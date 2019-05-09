@@ -3,14 +3,23 @@ import * as React from 'react';
 // components
 import Product from '../Product/Product.styled';
 
+// data
+import { products } from '../../../data/products';
+
 class ProductCartComponent extends React.Component {
+  componentDidMount() {
+
+  }
+
   render() {
+    const id = this.props.match.params.id;
+    const product = products.find(x => x.id === id);
     return (
       <Product.Wrapper>
-        <Product.Image src='' />
+        <Product.Image src={product.image} />
         <Product.Details>
-          <Product.Name>Name</Product.Name>
-          <Product.Price>Price</Product.Price>
+          <Product.Name>{product.name}</Product.Name>
+          <Product.Price>{product.price}</Product.Price>
         </Product.Details>
         <Product.AddToBasketButton />
       </Product.Wrapper>
