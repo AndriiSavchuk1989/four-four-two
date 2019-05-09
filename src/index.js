@@ -1,10 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import App from './containers/App';
 
-import ProductsListComponent from './components/ProductsList/ProductsList.component';
-
-// data
-import { products } from '../data/products';
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<ProductsListComponent products={products} />, rootElement);
+ReactDOM.render(
+    <App />,
+  document.getElementById('root')
+);
