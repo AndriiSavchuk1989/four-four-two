@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import ProductsList from 'ProductsList.styled';
+import ProductsList from './ProductsList.styled';
 import ProductComponent from '../Product/Product.component';
 
 class ProductsListComponent extends React.Component {
