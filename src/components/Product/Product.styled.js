@@ -1,6 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Product = {};
+
+const boot = 'https://image.flaticon.com/icons/svg/79/79828.svg';
+const kit = 'https://image.flaticon.com/icons/svg/79/79693.svg';
 
 Product.Wrapper = styled.div`
   display: flex;
@@ -53,6 +56,7 @@ Product.Button = styled.button`
   border: none;
   font-size: 16px;
   position: relative;
+  
   &:after {
     content: '';
     position: absolute;
@@ -69,8 +73,7 @@ Product.Button = styled.button`
 `;
 
 Product.InfoButton = styled(Product.Button)`
-  background: url('https://static.thenounproject.com/png/446237-200.png')
-    no-repeat center;
+  background: url(${props => props.kit || props.boot}) no-repeat center;
   background-size: 60px 60px;
 `;
 
