@@ -1,7 +1,7 @@
 import React from "react";
 import Product from 'Product.styled';
 
-const ProductItem = props => {
+const ProductComponent = props => {
   const { product } = props;
   return (
     <Product.Wrapper>
@@ -18,4 +18,4 @@ const ProductItem = props => {
   );
 };
 
-export default ProductItem;
+export default ProductComponent;
