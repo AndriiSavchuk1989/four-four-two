@@ -3,13 +3,16 @@ import * as React from 'react';
 import ProductsList from './ProductsList.styled';
 import ProductComponent from '../Product/Product.component';
 
+// data
+import { products } from '../../../data/products';
+
 class ProductsListComponent extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { products } = this.props;
+    //const { products } = this.props;
     return (
       <ProductsList.Wrapper>
         {products.map((prod, item) => (
