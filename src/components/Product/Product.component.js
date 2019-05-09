@@ -1,5 +1,6 @@
 import React from "react";
 import Product from './Product.styled';
+import { Link } from 'react-router-dom';
 
 const ProductComponent = props => {
   const { product } = props;
@@ -15,7 +16,7 @@ const ProductComponent = props => {
         {(() => {
           switch(product.type) {
             case 'kit':
-              return <Product.InfoButton kit />;
+              return (<Link to={`products/${product.id}`} key={product.id}><Product.InfoButton kit /></Link>);
             case 'boot':
               return <Product.InfoButton boot />;
             default:

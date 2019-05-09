@@ -7,6 +7,7 @@ import { createBrowserHistory } from 'history';
 import HomeComponent from '../components/Home/Home.component';
 import ProductsListComponent from '../components/ProductsList/ProductsList.component'
 import LayoutComponent from '../components/Layout/Layout.component';
+import ProductComponent from '../components/Product/Product.component';
 
 const history = createBrowserHistory();
 
@@ -15,6 +16,7 @@ const App = () => (
     <Route component={LayoutComponent}>
       <Route exact path="/" component={HomeComponent} />
       <Route exact path="/products" component={ProductsListComponent} />
+      <Route exact path="/products/:id" component={ProductComponent} />
     </Route>
   </BrowserRouter>
 );
