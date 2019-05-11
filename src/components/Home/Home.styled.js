@@ -17,7 +17,7 @@ Home.BackgroundContainer = styled.div`
       rgba(0, 0, 0, 0.5) 50%,
       rgba(0, 0, 0, 0.65) 100%
     ),
-    url('https://img1.goodfon.com/wallpaper/nbig/d/ae/liga-chempionov-lch-stadion.jpg')
+    url('../../static/home_page_background_image/background.jpg')
       no-repeat center;
   background-size: cover;
   height: 100%;
@@ -63,5 +63,10 @@ Home.ButtonWrapper = styled.div`
     background-color: #111;
   }
 `;
+
+Home.VideoBackground = styled.video`
+`;
+
+Home.VideoSource = styled.source``;
 
 export default Home;
