@@ -12,8 +12,7 @@ class ProductCartComponent extends React.Component {
   }
 
   render() {
-    const id = this.props.match.params.id;
-    const product = products.find(x => x.id === id);
+    const product = products.find(x => x.id === this.props.match.params.id);
     return (
       <Product.Wrapper>
         <Product.Image src={product.image} />
