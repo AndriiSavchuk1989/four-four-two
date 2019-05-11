@@ -8,11 +8,13 @@ import HomeComponent from '../components/Home/Home.component';
 import ProductsListComponent from '../components/ProductsList/ProductsList.component'
 import LayoutComponent from '../components/Layout/Layout.component';
 import ProductCartComponent from '../components/ProductCart/ProductCart.component';
+import HeaderComponent from '../components/Header/Header.component';
 
 const history = createBrowserHistory();
 
 const App = () => (
   <BrowserRouter history={history}>
+    <HeaderComponent />
     <Route component={LayoutComponent}>
       <Route exact path="/" component={HomeComponent} />
       <Route exact path="/products" component={ProductsListComponent} />
