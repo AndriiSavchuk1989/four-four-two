@@ -13,16 +13,9 @@ const ProductComponent = props => {
         <Product.Price>{product.price}</Product.Price>
       </Product.Details>
       <Product.ButtonsWrapper>
-        {(() => {
-          switch(product.type) {
-            case 'kit':
-              return (<Link to={`products/${product.id}`} key={product.id}>More info</Link>);
-            case 'boot':
-              return <Product.InfoButton boot />;
-            default:
-              return <Product.InfoButton />;
-          }
-        })()}
+        <Product.InfoButton>
+          <Link to={`products/${product.id}`} key={product.id}>More info</Link>
+        </Product.InfoButton>
         <Product.AddToBasketButton />
       </Product.ButtonsWrapper>
     </Product.Wrapper>
