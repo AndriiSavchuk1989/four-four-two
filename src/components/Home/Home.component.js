@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Home from './Home.styled';
+import VideoBackgroundComponent from '../VideoBackground/VideoBackground.component';
 
 const HomeComponent = () => {
   return (
     <Home.Wrapper>
-      <Home.BackgroundContainer>
+      <VideoBackgroundComponent />
         <Home.DescriptionContent>
           <Home.Header>Four-Four-Two</Home.Header>
           <Home.Description>
@@ -21,7 +22,6 @@ const HomeComponent = () => {
         <Home.ButtonWrapper>
           <Link to="/products">Explore more</Link>
         </Home.ButtonWrapper>
-      </Home.BackgroundContainer>
     </Home.Wrapper>
   );
 };
