@@ -10,7 +10,7 @@ const ProductComponent = props => {
       <Product.Image src={product.image} />
       <Product.Details>
         <Product.Name>{product.name}</Product.Name>
-        <Product.Price>{product.price}</Product.Price>
+        <Product.Price>${product.price}</Product.Price>
       </Product.Details>
       <Product.ButtonsWrapper>
         <Product.InfoButton>

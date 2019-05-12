@@ -56,30 +56,20 @@ Product.Button = styled.button`
   border: none;
   font-size: 16px;
   position: relative;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    background-color: red;
-    z-index: -1;
-  }
+  cursor: pointer;
 `;
 
 Product.InfoButton = styled(Product.Button)`
-  background: url(${props => props.kit || props.boot}) no-repeat center;
-  background-size: 60px 60px;
+  & > * {
+    background-size: 60px 60px;
+    text-decoration: none;
+    color: #000;
+    font-family: sans-serif;
+    font-weight: bolder;
+  }
 `;
 
 Product.AddToBasketButton = styled(Product.Button)`
-  background: url('https://image.flaticon.com/icons/png/512/60/60756.png')
-    no-repeat center;
   background-size: 60px 60px;
 `;
 
