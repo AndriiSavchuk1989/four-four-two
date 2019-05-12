@@ -8,7 +8,7 @@ const BasketComponent = () => {
   console.log(basket);
   return (
     basket.map((item, index) => {
-      <ProductComponent key={index.toString()} product={item} />
+      <ProductComponent product={item} />
     })
 
   )
