@@ -7,7 +7,7 @@ import VideoBackgroundComponent from '../VideoBackground/VideoBackground.compone
 const HomeComponent = () => {
   return (
     <Home.Wrapper>
-      <VideoBackgroundComponent />
+      <Home.BackgroundContainer>
         <Home.DescriptionContent>
           <Home.Header>Four-Four-Two</Home.Header>
           <Home.Description>
@@ -22,6 +22,7 @@ const HomeComponent = () => {
         <Home.ButtonWrapper>
           <Link to="/products">Explore more</Link>
         </Home.ButtonWrapper>
+      </Home.BackgroundContainer>
     </Home.Wrapper>
   );
 };

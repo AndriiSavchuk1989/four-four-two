@@ -2,14 +2,15 @@ import React from 'react';
 import ProductComponent from '../Product/Product.component';
 
 // temporary data
-import { products } from '../../../data/basket';
+import { products as basket}  from '../../../data/basket';
 
-
-const BasketComponent = products => {
+const BasketComponent = () => {
+  console.log(basket);
   return (
-    products.map((item, index) => {
+    basket.map((item, index) => {
       <ProductComponent key={index.toString()} product={item} />
     })
+
   )
 };
 

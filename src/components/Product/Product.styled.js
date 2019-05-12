@@ -9,13 +9,13 @@ Product.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 25%;
+  max-width: 20%;
   position: relative;
 `;
 
 Product.Image = styled.img`
-  display: block;
   flex-basis: 200px;
+  max-width: 75%;
 `;
 
 Product.Details = styled.div`
