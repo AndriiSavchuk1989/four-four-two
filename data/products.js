@@ -240,16 +240,6 @@ export const products = [
     quantity: 1
   },
   {
-    id: "25",
-    type: "boot",
-    country: "Germany",
-    name: "adidas Copa 19.1 Mens FG Football Boots",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    price: 150,
-    image: "https://images.sportsdirect.com/images/products/20323244_l.jpg",
-    quantity: 1
-  },
-  {
     id: "26",
     type: "boot",
     country: "Germany",
