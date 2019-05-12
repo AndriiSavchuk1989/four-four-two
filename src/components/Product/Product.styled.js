@@ -11,6 +11,7 @@ Product.Wrapper = styled.div`
   align-items: center;
   max-width: 20%;
   position: relative;
+  min-height: 350px;
 `;
 
 Product.Image = styled.img`

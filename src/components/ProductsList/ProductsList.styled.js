@@ -9,8 +9,7 @@ ProductsList.Wrapper = styled.div`
   align-items: flex-start;
   max-width: 100vw;
   flex-wrap: wrap;
+  position:relative;
 `;
-
-ProductsList.Product = styled.div``;
 
 export default ProductsList;
