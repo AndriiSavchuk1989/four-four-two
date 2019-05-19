@@ -10,7 +10,7 @@ export const history = createBrowserHistory();
 const middleware = [thunk];
 const initialState = {};
 
-const store = createStore(
+export const store = createStore(
   root_reducer(history),
   initialState,
   composeWithDevTools(
@@ -18,5 +18,3 @@ const store = createStore(
     applyMiddleware(...middleware)
   )
 );
-
-export default store;
