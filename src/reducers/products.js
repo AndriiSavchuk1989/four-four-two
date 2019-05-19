@@ -18,12 +18,13 @@ export const products_reducer = (state = initialState, action) => {
       if (!state.products.length) {
         return {
           ...state,
-          products: [ ...state.products, ...action.payload.products ],
+          products: [ ...state.products, ...action.payload.products],
           isLoading: false
         };
       }
       return state;
     case FETCH_ALL_PRODUCTS_ERROR:
-      return { ...state, isLoading: true, error: action.payload.products }
+      return { ...state, isLoading: true, error: action.payload.products };
+    default: return state;
   }
 };
