@@ -23,6 +23,7 @@ class ProductsListComponent extends React.Component {
     const { props } = this;
     props.fetchAllProducts();
     console.log('componentDidMount', products.length);
+    console.log('this state', this.state);
   }
 
   render() {
