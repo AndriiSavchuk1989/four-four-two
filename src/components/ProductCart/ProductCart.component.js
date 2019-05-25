@@ -4,9 +4,6 @@ import connect from 'react-redux/es/connect/connect';
 // components
 import Product from '../Product/Product.styled';
 
-// data
-import { products } from '../../../data/products';
-
 // actions
 import { addProductToBasket } from '../../actions/product_cart_actions';
 
@@ -46,7 +43,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addProductToBasket: id => {
       dispatch(addProductToBasket(id));
-  }
+  },
 });
 
 export default connect(

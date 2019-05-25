@@ -8,7 +8,7 @@ import ProductsList from './ProductsList.styled';
 import ProductComponent from '../Product/Product.component';
 
 // actions
-import { fetchAllProducts } from '../../actions/products_list_actions';
+import { fetchAllProducts, getProductById } from '../../actions/products_list_actions';
 
 // data
 import { products } from '../../../data/products';
@@ -23,7 +23,6 @@ class ProductsListComponent extends React.Component {
     const { props } = this;
     props.fetchAllProducts();
     console.log('componentDidMount', products.length);
-    console.log('this state', this.state);
   }
 
   render() {
@@ -45,6 +44,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchAllProducts: () => {
     dispatch(fetchAllProducts());
+  },
+  getProductById: id => {
+    dispatch(getProductById(id));
   }
 });
 
