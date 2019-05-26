@@ -13,8 +13,7 @@ import BasketComponent from '../components/Basket/Basket.component';
 
 const history = createBrowserHistory();
 
-const App = (props) => {
-  console.log(props.store.getState());
+const App = () => {
   return (
     <BrowserRouter history={history}>
       <HeaderComponent/>

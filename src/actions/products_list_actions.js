@@ -9,10 +9,10 @@ export const fetchAllProducts = () => dispatch => {
   axios
     .get('http://www.mocky.io/v2/5ce9af9d330000aa38525ddc')
       .then(response => {
-        console.log(response.data.products);
+        console.log(typeof response.data.products);
       dispatch({
         type: FETCH_ALL_PRODUCTS_SUCCESS,
-        payload: response.data.products
+        payload: response.data
       });
     })
     .catch(error => {

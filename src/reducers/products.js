@@ -11,21 +11,35 @@ const initialState = {
 };
 
 const products = (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
     case FETCH_ALL_PRODUCTS_START:
       return { ...state, isLoading: true, error: null };
     case FETCH_ALL_PRODUCTS_SUCCESS:
       if (!state.products.length) {
         return {
-          ...state,
-          products: [ ...state.products, ...action.payload],
+          products: [...state.products, ...action.payload.products],
           isLoading: false
         };
       }
       return state;
     case FETCH_ALL_PRODUCTS_ERROR:
       return { ...state, isLoading: true, error: action.payload };
-    default: return state;
+    case FETCH_PRODUCT_BY_ID_START:
+      return { ...state, isLoading: true, error: null };
+    case FETCH_PRODUCT_BY_ID_SUCCESS: {
+      const searchingProduct = state.products.products.findIndex(
+        product => action.payload.id === product.id
+      );
+      return {
+        ...state,
+        isLoading: true,
+        products: searchingProduct
+      };
+    }
+    case FETCH_PRODUCT_BY_ID_ERROR:
+      return { ...state, isLoading: false, error: action.payload };
+    default:
+      return state;
   }
 };
 
