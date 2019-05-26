@@ -18,7 +18,7 @@ class ProductCartComponent extends React.Component {
     console.log(this.props.match.params.id);
   }
   render() {
-    const product = products.find(x => x.id === this.props.match.params.id);
+    // const product = products.find(x => x.id === this.props.match.params.id);
     console.log('this.props___',this.props);
     console.log('product info___',product);
     console.log('this.props.match___',this.props.match);

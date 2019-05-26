@@ -6,25 +6,19 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './containers/App';
 
-// store
-// import { store } from './store/store';
-import root_reducer from './reducers/root_reducer';
-import routerMiddleware from 'react-router-redux/src/middleware';
+import rootReducer from './reducers/rootReducer';
 
-const initialState = {};
 
 const store = createStore(
-  root_reducer,
-  initialState,
+  rootReducer,
   composeWithDevTools(
-    applyMiddleware(thunk),
-    applyMiddleware(routerMiddleware(history))
+    applyMiddleware(thunk)
   )
 );
 
 ReactDOM.render(
   <Provider store={store}>
-    <App store={store} />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

@@ -10,12 +10,11 @@ const initialState = {
   error: null
 };
 
-export const products_reducer = (state = initialState, action) => {
+const products = (state = initialState, action) => {
   switch (action) {
     case FETCH_ALL_PRODUCTS_START:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     case FETCH_ALL_PRODUCTS_SUCCESS:
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       if (!state.products.length) {
         return {
           ...state,
@@ -29,3 +28,5 @@ export const products_reducer = (state = initialState, action) => {
     default: return state;
   }
 };
+
+export default products;

@@ -21,9 +21,9 @@ const App = (props) => {
       <Route component={LayoutComponent}>
         <Route exact path="/" component={HomeComponent}/>
         <Route exact path="/products" component={ProductsListComponent}/>
-        <Route exact path="/products/:id" component={ProductCartComponent}/>
-        <Route exact path="/basket" component={BasketComponent}/>
       </Route>
+      <Route exact path="/products/:id" component={ProductCartComponent}/>
+      <Route exact path="/basket" component={BasketComponent}/>
     </BrowserRouter>
     )
 };

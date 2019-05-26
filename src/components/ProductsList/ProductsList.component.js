@@ -1,5 +1,5 @@
 import * as React from 'react';
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 
 // styles
 import ProductsList from './ProductsList.styled';
@@ -9,9 +9,10 @@ import ProductComponent from '../Product/Product.component';
 
 // actions
 import { fetchAllProducts, getProductById } from '../../actions/products_list_actions';
+import getSearchedProducts from '../../selectors/getSearchedProducts';
 
 // data
-import { products } from '../../../data/products';
+//import { products } from '../../../data/products';
 
 
 class ProductsListComponent extends React.Component {
@@ -22,11 +23,11 @@ class ProductsListComponent extends React.Component {
   componentDidMount() {
     const { props } = this;
     props.fetchAllProducts();
-    console.log('componentDidMount', products.length);
+    console.log('componentDidMount', props);
   }
 
   render() {
-    //const { products } = this.props;
+    const { products } = this.props;
     return (
       <ProductsList.Wrapper>
         {products.map((prod, item) => (
@@ -37,16 +38,13 @@ class ProductsListComponent extends React.Component {
   }
 };
 
-const mapStateToProps = state => ({
-  products: state.products
-})
+const mapStateToProps = state => {
+  return state.products;
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchAllProducts: () => {
     dispatch(fetchAllProducts());
-  },
-  getProductById: id => {
-    dispatch(getProductById(id));
   }
 });
 
