@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ALL_PRODUCTS_START, FETCH_ALL_PRODUCTS_SUCCESS, FETCH_ALL_PRODUCTS_ERROR } from './actions_types';
+import { FETCH_ALL_PRODUCTS_START, FETCH_ALL_PRODUCTS_SUCCESS, FETCH_ALL_PRODUCTS_ERROR, FETCH_PRODUCT_BY_ID_START, FETCH_PRODUCT_BY_ID_SUCCESS, FETCH_PRODUCT_BY_ID_ERROR } from './actions_types';
 
 export const fetchAllProducts = () => dispatch => {
   dispatch({
@@ -7,11 +7,12 @@ export const fetchAllProducts = () => dispatch => {
   });
 
   axios
-    .get('../data/products.js')
-    .then(response => {
+    .get('http://www.mocky.io/v2/5ce9af9d330000aa38525ddc')
+      .then(response => {
+        console.log(typeof response.data.products);
       dispatch({
         type: FETCH_ALL_PRODUCTS_SUCCESS,
-        payload: response.data.products
+        payload: response.data
       });
     })
     .catch(error => {
@@ -20,4 +21,26 @@ export const fetchAllProducts = () => dispatch => {
         payload: error.message
       });
     });
-}
+};
+
+export const getProductById = id => dispatch => {
+  dispatch({
+    type: FETCH_PRODUCT_BY_ID_START
+  });
+
+  axios
+    .get('http://www.mocky.io/v2/5ce9af9d330000aa38525ddc')
+    .then(response => {
+      console.log(response.data.products.find(x => x.id === this.props.match.params.id));
+      dispatch({
+        type: FETCH_PRODUCT_BY_ID_SUCCESS,
+        payload: response.data.products.find(x => x.id === this.props.match.params.id)
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: FETCH_PRODUCT_BY_ID_ERROR,
+        payload: error.message
+      })
+    });
+};

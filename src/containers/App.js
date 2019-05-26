@@ -13,16 +13,18 @@ import BasketComponent from '../components/Basket/Basket.component';
 
 const history = createBrowserHistory();
 
-const App = () => (
-  <BrowserRouter history={history}>
-    <HeaderComponent />
-    <Route component={LayoutComponent}>
-      <Route exact path="/" component={HomeComponent} />
-      <Route exact path="/products" component={ProductsListComponent} />
-      <Route exact path="/products/:id" component={ProductCartComponent} />
-      <Route exact path="/basket" component={BasketComponent} />
-    </Route>
-  </BrowserRouter>
-);
+const App = () => {
+  return (
+    <BrowserRouter history={history}>
+      <HeaderComponent/>
+      <Route component={LayoutComponent}>
+        <Route exact path="/" component={HomeComponent}/>
+        <Route exact path="/products" component={ProductsListComponent}/>
+      </Route>
+      <Route exact path="/products/:id" component={ProductCartComponent}/>
+      <Route exact path="/basket" component={BasketComponent}/>
+    </BrowserRouter>
+    )
+};
 
 export default hot(module)(App);
