@@ -6,6 +6,7 @@ from '../actions/actions_types';
 
 const initialState = {
   products: [],
+  product: {},
   isLoading: false,
   error: null
 };
@@ -21,13 +22,11 @@ const products = (state = initialState, action) => {
     case FETCH_PRODUCT_BY_ID_START:
       return { ...state, isLoading: true, error: null };
     case FETCH_PRODUCT_BY_ID_SUCCESS: {
-      const searchingProduct = state.products.products.findIndex(
-        product => action.payload.id === product.id
-      );
       return {
         ...state,
+        products: [...state.products],
         isLoading: true,
-        products: searchingProduct
+        product: action.payload
       };
     }
     case FETCH_PRODUCT_BY_ID_ERROR:

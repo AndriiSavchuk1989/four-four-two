@@ -29,12 +29,13 @@ export const getProductById = id => dispatch => {
   });
 
   axios
-    .get('http://www.mocky.io/v2/5ce9af9d330000aa38525ddc')
+    .get('http://www.mocky.io/v2/5cec45f3330000165f6d7a2d')
     .then(response => {
-      console.log(response.data.products.find(x => x.id === this.props.match.params.id));
+      console.log('get product___', response);
+      const product = response.data.find(prod => prod.id === id);
       dispatch({
         type: FETCH_PRODUCT_BY_ID_SUCCESS,
-        payload: response.data.products.find(x => x.id === this.props.match.params.id)
+        payload: product
       });
     })
     .catch(error => {
