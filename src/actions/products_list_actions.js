@@ -7,12 +7,12 @@ export const fetchAllProducts = () => dispatch => {
   });
 
   axios
-    .get('http://www.mocky.io/v2/5ce9af9d330000aa38525ddc')
+    .get('http://www.mocky.io/v2/5cec45f3330000165f6d7a2d')
       .then(response => {
-        console.log(typeof response.data.products);
+        console.log(response);
       dispatch({
         type: FETCH_ALL_PRODUCTS_SUCCESS,
-        payload: response.data
+        payload: Array.from(response.data)
       });
     })
     .catch(error => {

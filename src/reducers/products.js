@@ -13,15 +13,9 @@ const initialState = {
 const products = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL_PRODUCTS_START:
-      return { ...state, isLoading: true, error: null };
+      return { ...state, products: [], isLoading: true, error: null };
     case FETCH_ALL_PRODUCTS_SUCCESS:
-      if (!state.products.length) {
-        return {
-          products: [...state.products, ...action.payload.products],
-          isLoading: false
-        };
-      }
-      return state;
+      return {...state, products: action.payload};
     case FETCH_ALL_PRODUCTS_ERROR:
       return { ...state, isLoading: true, error: action.payload };
     case FETCH_PRODUCT_BY_ID_START:
