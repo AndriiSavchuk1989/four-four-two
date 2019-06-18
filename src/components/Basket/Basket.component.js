@@ -1,17 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ProductComponent from '../Product/Product.component';
 
-// temporary data
-import { products as basket}  from '../../../data/basket';
-
-const BasketComponent = () => {
-  console.log(basket);
+const BasketComponent = (props) => {
+  const { count, basket } = props;
   return (
-    basket.map((item, index) => {
-      <ProductComponent product={item} />
-    })
-
+    !count ? <div>Empty</div> : <div>You have {count} products in a basket</div>
   )
 };
 
-export default BasketComponent;
+const mapStateToProps = state => ({
+  count: state.basket.count,
+  basket: state.basket.basket
+});
+
+export default connect(mapStateToProps)(BasketComponent);
