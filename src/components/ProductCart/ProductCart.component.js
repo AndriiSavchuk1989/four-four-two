@@ -6,11 +6,17 @@ import Product from '../Product/Product.styled';
 
 // actions
 import { addProductToBasket } from '../../actions/product_cart_actions';
+import { getProductById } from '../../actions/products_list_actions';
 
 class ProductCartComponent extends React.Component {
   constructor(props) {
     super(props);
     this.addProductToBasket = this.addProductToBasket.bind(this);
+  }
+  componentDidMount() {
+    const { props } = this;
+    props.getProductById(props.match.params.id);
+    console.log('component did mount', props);
   }
 
   addProductToBasket() {
@@ -18,11 +24,9 @@ class ProductCartComponent extends React.Component {
     console.log(this.props.match.params.id);
   }
   render() {
-    // const product = products.find(x => x.id === this.props.match.params.id);
-    console.log('this.props___',this.props);
-    console.log('product info___',product);
-    console.log('this.props.match___',this.props.match);
-    console.log('this.props.match.params___',this.props.match.params);
+    const { product, basket } = this.props;
+    console.log('product__', product);
+    console.log('basket___', basket);
     return (
       <Product.Wrapper>
         <Product.Image src={product.image} />
@@ -30,20 +34,26 @@ class ProductCartComponent extends React.Component {
           <Product.Name>{product.name}</Product.Name>
           <Product.Price>{product.price}</Product.Price>
         </Product.Details>
-        <Product.AddToBasketButton onClick={this.addProductToBasket} />
+        <Product.AddToBasketButton onClick={this.addProductToBasket}>
+          Add to Basket
+        </Product.AddToBasketButton>
       </Product.Wrapper>
     )
   }
 };
 
 const mapStateToProps = state => ({
-  product: state.product
+  product: state.products.product,
+  basket: state.basket.basket
 });
 
 const mapDispatchToProps = dispatch => ({
   addProductToBasket: id => {
       dispatch(addProductToBasket(id));
   },
+  getProductById: id => {
+    dispatch(getProductById(id));
+  }
 });
 
 export default connect(
