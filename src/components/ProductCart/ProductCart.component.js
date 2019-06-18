@@ -13,7 +13,6 @@ class ProductCartComponent extends React.Component {
     super(props);
     this.addProductToBasket = this.addProductToBasket.bind(this);
   }
-
   componentDidMount() {
     const { props } = this;
     props.getProductById(props.match.params.id);
@@ -23,11 +22,11 @@ class ProductCartComponent extends React.Component {
   addProductToBasket() {
     this.props.addProductToBasket(this.props.match.params.id);
     console.log(this.props.match.params.id);
-    console.log('state', this.state);
   }
   render() {
-    const { product } = this.props;
-    console.log(product);
+    const { product, basket } = this.props;
+    console.log('product__', product);
+    console.log('basket___', basket);
     return (
       <Product.Wrapper>
         <Product.Image src={product.image} />
@@ -35,14 +34,17 @@ class ProductCartComponent extends React.Component {
           <Product.Name>{product.name}</Product.Name>
           <Product.Price>{product.price}</Product.Price>
         </Product.Details>
-        <Product.AddToBasketButton onClick={this.addProductToBasket} />
+        <Product.AddToBasketButton onClick={this.addProductToBasket}>
+          Add to Basket
+        </Product.AddToBasketButton>
       </Product.Wrapper>
     )
   }
 };
 
 const mapStateToProps = state => ({
-  product: state.products.product
+  product: state.products.product,
+  basket: state.basket.basket
 });
 
 const mapDispatchToProps = dispatch => ({
