@@ -1,11 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ProductComponent from '../Product/Product.component';
+import ProductsList from '../ProductsList/ProductsList.styled';
 
 const BasketComponent = (props) => {
   const { count, basket } = props;
+  const renderedItems = basket => {
+      return (
+        basket.map(item => (
+          <ProductsList.Wrapper>
+            <ProductComponent key={item.id} product={item} />
+          </ProductsList.Wrapper>
+        ))
+      )
+  };
   return (
-    !count ? <div>Empty</div> : <div>You have {count} products in a basket</div>
+    !count ? <div>Empty</div> : renderedItems(basket)
   )
 };
 
