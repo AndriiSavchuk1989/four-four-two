@@ -2,6 +2,17 @@ import React from "react";
 import Product from './Product.styled';
 import { Link } from 'react-router-dom';
 
+const renderHandlers = ({type}) => {
+  switch(type) {
+    case "info": {
+      return <Product.AddToBasketButton>Add to basket</Product.AddToBasketButton>;
+    }
+    case 'basket': {
+      return
+    }
+  }
+};
+
 const ProductComponent = props => {
   const { product } = props;
   //console.log(product.type);
@@ -16,7 +27,7 @@ const ProductComponent = props => {
         <Product.InfoButton>
           <Link to={`products/${product.id}`} key={product.id}>More info</Link>
         </Product.InfoButton>
-        <Product.AddToBasketButton />
+        <Product.AddToBasketButton>Add to basket</Product.AddToBasketButton>
       </Product.ButtonsWrapper>
     </Product.Wrapper>
   );

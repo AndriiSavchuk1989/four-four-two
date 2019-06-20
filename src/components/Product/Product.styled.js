@@ -58,6 +58,8 @@ Product.Button = styled.button`
   font-size: 16px;
   position: relative;
   cursor: pointer;
+  font-family: sans-serif;
+  font-weight: bolder;
 `;
 
 Product.InfoButton = styled(Product.Button)`
@@ -65,8 +67,6 @@ Product.InfoButton = styled(Product.Button)`
     background-size: 60px 60px;
     text-decoration: none;
     color: #000;
-    font-family: sans-serif;
-    font-weight: bolder;
   }
 `;
 
