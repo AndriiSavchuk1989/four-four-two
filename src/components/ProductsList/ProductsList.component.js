@@ -6,13 +6,10 @@ import ProductsList from './ProductsList.styled';
 
 // components
 import ProductComponent from '../Product/Product.component';
-import ProductContainer from '../../containers/Product';
 
 // actions
-import { fetchAllProducts, getProductById } from '../../actions/products_list_actions';
+import { fetchAllProducts } from '../../actions/products_list_actions';
 import getSearchedProducts from '../../selectors/getSearchedProducts';
-
-const Product = ProductContainer(ProductComponent);
 
 class ProductsListComponent extends React.Component {
   constructor(props) {
@@ -30,7 +27,7 @@ class ProductsListComponent extends React.Component {
     return (
       <ProductsList.Wrapper>
         {products.map((prod, item) => (
-          <Product key={item.id} product={prod} />
+          <ProductComponent key={item.id} product={prod} />
         ))}
       </ProductsList.Wrapper>
     );

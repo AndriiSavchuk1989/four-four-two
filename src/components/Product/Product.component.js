@@ -1,20 +1,35 @@
 import React from "react";
-import Product from './Product.styled';
 import { Link } from 'react-router-dom';
 
-const renderHandlers = ({type}) => {
+// styled
+import Product from './Product.styled';
+import QuantityHandler from '../../components/QuantityHandler/QuantityHandler.component';
+
+const RenderHandlers = props => {
+  const { type, product } = props;
   switch(type) {
     case "info": {
       return <Product.AddToBasketButton>Add to basket</Product.AddToBasketButton>;
     }
     case 'basket': {
-      return
+      return <QuantityHandler />
+    }
+    default: {
+      return (
+        <>
+          <Product.InfoButton>
+            <Link to={`products/${product.id}`} key={product.id}>More info</Link>
+          </Product.InfoButton>
+          <Product.AddToBasketButton>Add to basket</Product.AddToBasketButton>
+        </>
+      )
     }
   }
 };
 
 const ProductComponent = props => {
-  const { product } = props;
+  const { product, type } = props;
+  console.log('type__', type);
   //console.log(product.type);
   return (
     <Product.Wrapper>
@@ -24,10 +39,7 @@ const ProductComponent = props => {
         <Product.Price>${product.price}</Product.Price>
       </Product.Details>
       <Product.ButtonsWrapper>
-        <Product.InfoButton>
-          <Link to={`products/${product.id}`} key={product.id}>More info</Link>
-        </Product.InfoButton>
-        <Product.AddToBasketButton>Add to basket</Product.AddToBasketButton>
+        <RenderHandlers type={type} product={product} />
       </Product.ButtonsWrapper>
     </Product.Wrapper>
   );
