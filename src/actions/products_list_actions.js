@@ -33,6 +33,7 @@ export const getProductById = id => dispatch => {
     .then(response => {
       console.log('get product___', response);
       const product = response.data.find(prod => prod.id === id);
+      console.log('product___', product);
       dispatch({
         type: FETCH_PRODUCT_BY_ID_SUCCESS,
         payload: product

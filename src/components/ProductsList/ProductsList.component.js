@@ -6,13 +6,11 @@ import ProductsList from './ProductsList.styled';
 
 // components
 import ProductComponent from '../Product/Product.component';
-import ProductContainer from '../../containers/Product';
 
 // actions
-import { fetchAllProducts, getProductById } from '../../actions/products_list_actions';
+import { fetchAllProducts } from '../../actions/products_list_actions';
+import { addProductToBasket } from '../../actions/product_cart_actions';
 import getSearchedProducts from '../../selectors/getSearchedProducts';
-
-const Product = ProductContainer(ProductComponent);
 
 class ProductsListComponent extends React.Component {
   constructor(props) {
@@ -30,20 +28,23 @@ class ProductsListComponent extends React.Component {
     return (
       <ProductsList.Wrapper>
         {products.map((prod, item) => (
-          <Product key={item.id} product={prod} />
+          <ProductComponent type="list" key={item.id} product={prod} />
         ))}
       </ProductsList.Wrapper>
     );
   }
 };
 
-const mapStateToProps = state => {
-  return state.products;
-};
+const mapStateToProps = state => ({
+  products: state.products.products
+});
 
 const mapDispatchToProps = dispatch => ({
   fetchAllProducts: () => {
     dispatch(fetchAllProducts());
+  },
+  addProductToBasket: (id) => {
+    dispatch(addProductToBasket(id))
   }
 });
 

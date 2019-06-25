@@ -1,44 +1,36 @@
 import * as React from 'react';
-import connect from 'react-redux/es/connect/connect';
-
-// components
-import Product from '../Product/Product.styled';
-
+import { connect } from 'react-redux';
 // actions
 import { addProductToBasket } from '../../actions/product_cart_actions';
 import { getProductById } from '../../actions/products_list_actions';
+import ProductComponent from '../Product/Product.component';
 
 class ProductCartComponent extends React.Component {
+
   constructor(props) {
     super(props);
-    this.addProductToBasket = this.addProductToBasket.bind(this);
+    this.state = {productId: null};
   }
+
+
   componentDidMount() {
     const { props } = this;
     props.getProductById(props.match.params.id);
-    console.log('component did mount', props);
+    this.setState((state, props) => {return {productId: props.match.params.id}});
+    console.log('cart did mount props', props);
   }
 
-  addProductToBasket() {
-    this.props.addProductToBasket(this.props.match.params.id);
-    console.log(this.props.match.params.id);
-  }
   render() {
-    const { product, basket } = this.props;
-    console.log('product__', product);
-    console.log('basket___', basket);
+    const { product } = this.props;
+    console.log('product__from product cart___', product);
+    console.log('product id from state___', this.state.productId);
     return (
-      <Product.Wrapper>
-        <Product.Image src={product.image} />
-        <Product.Details>
-          <Product.Name>{product.name}</Product.Name>
-          <Product.Price>{product.price}</Product.Price>
-        </Product.Details>
-        <Product.AddToBasketButton onClick={this.addProductToBasket}>
-          Add to Basket
-        </Product.AddToBasketButton>
-      </Product.Wrapper>
-    )
+      <ProductComponent
+        product={product}
+        type="info"
+        id={this.state.productId}
+      />
+      )
   }
 };
 

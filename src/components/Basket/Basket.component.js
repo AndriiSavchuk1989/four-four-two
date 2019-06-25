@@ -3,25 +3,29 @@ import { connect } from 'react-redux';
 import ProductComponent from '../Product/Product.component';
 import ProductsList from '../ProductsList/ProductsList.styled';
 
-const BasketComponent = (props) => {
-  const { count, basket } = props;
-  const renderedItems = basket => {
-      return (
-        basket.map(item => (
-          <ProductsList.Wrapper>
-            <ProductComponent key={item.id} product={item} />
-          </ProductsList.Wrapper>
-        ))
-      )
-  };
+const Basket = props => {
+  const { basket } = props;
   return (
-    !count ? <div>Empty</div> : renderedItems(basket)
+    <ProductsList.Wrapper>
+      {basket.map(product => (
+        <ProductComponent product={product} type='basket' />
+      ))}
+    </ProductsList.Wrapper>
+  )
+};
+
+const BasketComponent = props => {
+  const { count, basket, totalPrice } = props;
+  console.log(totalPrice);
+  return (
+    !count ? <div>Empty</div> : <Basket basket={basket} />
   )
 };
 
 const mapStateToProps = state => ({
   count: state.basket.count,
-  basket: state.basket.basket
+  basket: state.basket.basket,
+  totalPrice: state.basket.totalPrice
 });
 
 export default connect(mapStateToProps)(BasketComponent);
