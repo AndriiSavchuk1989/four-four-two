@@ -9,6 +9,7 @@ import ProductComponent from '../Product/Product.component';
 
 // actions
 import { fetchAllProducts } from '../../actions/products_list_actions';
+import { addProductToBasket } from '../../actions/product_cart_actions';
 import getSearchedProducts from '../../selectors/getSearchedProducts';
 
 class ProductsListComponent extends React.Component {
@@ -27,20 +28,23 @@ class ProductsListComponent extends React.Component {
     return (
       <ProductsList.Wrapper>
         {products.map((prod, item) => (
-          <ProductComponent key={item.id} product={prod} />
+          <ProductComponent type="list" key={item.id} product={prod} />
         ))}
       </ProductsList.Wrapper>
     );
   }
 };
 
-const mapStateToProps = state => {
-  return state.products;
-};
+const mapStateToProps = state => ({
+  products: state.products.products
+});
 
 const mapDispatchToProps = dispatch => ({
   fetchAllProducts: () => {
     dispatch(fetchAllProducts());
+  },
+  addProductToBasket: (id) => {
+    dispatch(addProductToBasket(id))
   }
 });
 

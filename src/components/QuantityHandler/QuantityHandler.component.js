@@ -12,7 +12,8 @@ class QuantityHandlerComponent extends React.Component {
   }
 
   componentDidMount(props) {
-    this.setState({basket: this.props.basket})
+    this.setState({basket: [...this.state.basket, ...this.props.basket]})
+    console.log('quantity handler state___', this.state.basket);
   }
 
   decrease() {
@@ -24,8 +25,6 @@ class QuantityHandlerComponent extends React.Component {
   }
 
   render() {
-    const { basket } = this.props;
-    console.log('basket!!!==', basket);
     return (
       <QuantityHandler.Wrapper>
         <QuantityHandler.DecreaseButton onClick={this.decrease}>
