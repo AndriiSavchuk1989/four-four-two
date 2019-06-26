@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -63,6 +64,13 @@ class ProductComponent extends React.Component {
       </Product.Wrapper>
     )
   }
+};
+
+ProductComponent.propTypes = {
+  type:  PropTypes.string,
+  product: PropTypes.object,
+  addProductToBasket: PropTypes.func,
+  id: PropTypes.number
 };
 
 const mapDispatchToProps = dispatch => ({
