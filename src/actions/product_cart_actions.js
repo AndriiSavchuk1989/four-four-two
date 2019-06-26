@@ -8,6 +8,7 @@ export const addProductToBasket = id => dispatch => {
     .then(response => {
       console.log('response in cart actions___', response);
       const productToBasket = response.data.find(prod => prod.id === id);
+
       console.log('added product', productToBasket);
       dispatch({
         type: ADD_PRODUCT_TO_BASKET_SUCCESS,

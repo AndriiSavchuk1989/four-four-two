@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Search from './Search.styled';
 
 class SearchComponent extends Component {
-
   render() {
     return (
       <Search.Wrapper>
@@ -19,6 +18,6 @@ class SearchComponent extends Component {
       </Search.Wrapper>
     );
   }
-};
+}
 
 export default SearchComponent;

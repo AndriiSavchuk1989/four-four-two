@@ -1,9 +1,13 @@
-import React from "react";
+import React from 'react';
 import { connect } from 'react-redux';
 
 import QuantityHandler from './QuantityHandler.styled';
 
-class QuantityHandlerComponent extends React.Component {
+type Props = {
+  basket?: any
+};
+
+class QuantityHandlerComponent extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = { basket: [] };
@@ -11,17 +15,16 @@ class QuantityHandlerComponent extends React.Component {
     this.increase = this.increase.bind(this);
   }
 
-  componentDidMount(props) {
-    this.setState({basket: [...this.state.basket, ...this.props.basket]})
-    console.log('quantity handler state___', this.state.basket);
+  componentDidMount() {
+    this.setState((state, props) => { return { basket: [...state.basket, ...props.basket] }; });
   }
 
   decrease() {
-    this.setState({ quantity: this.state.quantity - 1 });
+    this.setState(state => { return { quantity: state.quantity - 1 }; });
   }
 
   increase() {
-    this.setState({ quantity: this.state.quantity + 1 });
+    this.setState(state => { return { quantity: state.quantity + 1 }; });
   }
 
   render() {
@@ -40,6 +43,10 @@ class QuantityHandlerComponent extends React.Component {
     );
   }
 }
+
+QuantityHandlerComponent.defaultProps = {
+  basket: []
+};
 
 const mapStateToProps = state => ({
   basket: state.basket.basket

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Home from './Home.styled';
-import VideoBackgroundComponent from '../VideoBackground/VideoBackground.component';
 
 const HomeComponent = () => {
   return (

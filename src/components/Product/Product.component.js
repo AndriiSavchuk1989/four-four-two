@@ -1,82 +1,119 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // styled
 import Product from './Product.styled';
-import QuantityHandlerComponent from '../../components/QuantityHandler/QuantityHandler.component';
+import QuantityHandlerComponent from '../QuantityHandler/QuantityHandler.component';
 
 // actions
 import { addProductToBasket } from '../../actions/product_cart_actions';
 
-const RenderHandlers = props => {
-  const { type, product, addProductToBasket } = props;
-  switch(type) {
-    case "info": {
-      return <Product.AddToBasketButton onClick={addProductToBasket}>Add to basket</Product.AddToBasketButton>;
+type Props = {
+  type?: any,
+  product?: any,
+  addProductToBasket?: any
+};
+
+type PropsProduct = {
+  type?: any,
+  product?: any,
+  id?: any,
+  addProductToBasket?: any
+};
+
+const RenderHandlers = (props: Props) => {
+  const { type, product } = props;
+
+  switch (type) {
+    case 'info': {
+      return (
+        <Product.AddToBasketButton
+          onClick={props.addProductToBasket}
+        >
+          Add to basket
+        </Product.AddToBasketButton>
+      );
     }
+
     case 'basket': {
-      return <QuantityHandlerComponent />
+      return <QuantityHandlerComponent />;
     }
+
     default: {
       return (
         <>
           <Product.InfoButton>
             <Link to={`products/${product.id}`}>More info</Link>
           </Product.InfoButton>
-          <Product.AddToBasketButton onClick={addProductToBasket}>Add to basket</Product.AddToBasketButton>
+          <Product.AddToBasketButton onClick={props.addProductToBasket}>
+            Add to basket
+          </Product.AddToBasketButton>
         </>
-      )
+      );
     }
   }
 };
 
-class ProductComponent extends React.Component {
+RenderHandlers.defaultProps = {
+  type: '',
+  product: {}
+};
+
+class ProductComponent extends React.Component<PropsProduct> {
   constructor(props) {
     super(props);
-    this.state = {productId: null};
+    this.state = { productId: null };
     this.addProductToBasket = this.addProductToBasket.bind(this);
   }
 
   componentDidMount() {
-    this.setState((state, props) => {return {productId: props.product.id}});
+    this.setState((state, props) => { return { productId: props.product.id }; });
   }
 
-  addProductToBasket(){
-    const id = this.state.productId || this.props.id;
+  addProductToBasket() {
+    const { productId } = this.state;
+    const id = productId || this.props.id;
+
     this.props.addProductToBasket(id);
   }
 
-  render () {
+  render() {
     const { product, type } = this.props;
-    console.log('product component id__', this.state);
-    return(
+
+    return (
       <Product.Wrapper>
         <Product.Image src={product.image} />
         <Product.Details>
           <Product.Name>{product.name}</Product.Name>
-          <Product.Price>${product.price}</Product.Price>
+          <Product.Price>
+            $
+            {product.price}
+          </Product.Price>
         </Product.Details>
         <Product.ButtonsWrapper>
-          <RenderHandlers type={type} product={product} addProductToBasket={this.addProductToBasket} />
+          <RenderHandlers
+            type={type}
+            product={product}
+            addProductToBasket={this.addProductToBasket}
+          />
         </Product.ButtonsWrapper>
       </Product.Wrapper>
-    )
+    );
   }
-};
+}
 
-ProductComponent.propTypes = {
-  type:  PropTypes.string,
-  product: PropTypes.object,
-  addProductToBasket: PropTypes.func,
-  id: PropTypes.number
+ProductComponent.defaultProps = {
+  type: '',
+  product: {},
+  id: null,
+  addProductToBasket: null
 };
 
 const mapDispatchToProps = dispatch => ({
-  addProductToBasket: (id) => {
-    dispatch(addProductToBasket(id))
+  addProductToBasket: id => {
+    dispatch(addProductToBasket(id));
   }
 });
 
-export default connect(null ,mapDispatchToProps)(ProductComponent);
+export default connect(null, mapDispatchToProps)(ProductComponent);
