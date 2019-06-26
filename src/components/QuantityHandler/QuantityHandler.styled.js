@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Product from '../../components/Product/Product.styled';
+import Product from '../Product/Product.styled';
 
 const QuantityHandler = {};
 

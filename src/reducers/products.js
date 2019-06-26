@@ -14,13 +14,16 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL_PRODUCTS_START:
-      return { ...state, products: [], product: {}, isLoading: true, error: null };
+      return {
+        ...state, products: [], product: {}, isLoading: true, error: null
+      };
     case FETCH_ALL_PRODUCTS_SUCCESS:
-      return {...state, products: action.payload};
+      return { ...state, products: action.payload };
     case FETCH_ALL_PRODUCTS_ERROR:
       return { ...state, isLoading: true, error: action.payload };
     case FETCH_PRODUCT_BY_ID_START:
       return { ...state, isLoading: true, error: null };
+
     case FETCH_PRODUCT_BY_ID_SUCCESS: {
       return {
         ...state,
@@ -28,6 +31,7 @@ export default (state = initialState, action) => {
         product: action.payload
       };
     }
+
     case FETCH_PRODUCT_BY_ID_ERROR:
       return { ...state, isLoading: false, error: action.payload };
     default:

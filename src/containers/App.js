@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 
 // components
 import HomeComponent from '../components/Home/Home.component';
-import ProductsListComponent from '../components/ProductsList/ProductsList.component'
+import ProductsListComponent from '../components/ProductsList/ProductsList.component';
 import LayoutComponent from '../components/Layout/Layout.component';
 import ProductCartComponent from '../components/ProductCart/ProductCart.component';
 import HeaderComponent from '../components/Header/Header.component';
@@ -16,15 +16,15 @@ const history = createBrowserHistory();
 const App = () => {
   return (
     <BrowserRouter history={history}>
-      <HeaderComponent/>
+      <HeaderComponent />
       <Route component={LayoutComponent}>
-        <Route exact path="/" component={HomeComponent}/>
-        <Route exact path="/products" component={ProductsListComponent}/>
+        <Route exact path="/" component={HomeComponent} />
+        <Route exact path="/products" component={ProductsListComponent} />
       </Route>
-      <Route exact path="/products/:id" component={ProductCartComponent}/>
-      <Route exact path="/basket" component={BasketComponent}/>
+      <Route exact path="/products/:id" component={ProductCartComponent} />
+      <Route exact path="/basket" component={BasketComponent} />
     </BrowserRouter>
-    )
+  );
 };
 
 export default hot(module)(App);

@@ -5,33 +5,42 @@ import { addProductToBasket } from '../../actions/product_cart_actions';
 import { getProductById } from '../../actions/products_list_actions';
 import ProductComponent from '../Product/Product.component';
 
-class ProductCartComponent extends React.Component {
+type Props = {
+  match?: any,
+  product?: any
+};
 
+class ProductCartComponent extends React.Component<Props> {
   constructor(props) {
     super(props);
-    this.state = {productId: null};
+    this.state = { productId: null };
   }
 
 
   componentDidMount() {
-    const { props } = this;
-    props.getProductById(props.match.params.id);
-    this.setState((state, props) => {return {productId: props.match.params.id}});
-    console.log('cart did mount props', props);
+    const { props, props: { match: { params: { id } } } } = this;
+
+    props.getProductById(id);
+    this.setState(() => { return { productId: id }; });
   }
 
   render() {
     const { product } = this.props;
-    console.log('product__from product cart___', product);
-    console.log('product id from state___', this.state.productId);
+    const { productId } = this.state;
+
     return (
       <ProductComponent
         product={product}
         type="info"
-        id={this.state.productId}
+        id={productId}
       />
-      )
+    );
   }
+}
+
+ProductCartComponent.defaultProps = {
+  match: null,
+  product: null
 };
 
 const mapStateToProps = state => ({
@@ -41,7 +50,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addProductToBasket: id => {
-      dispatch(addProductToBasket(id));
+    dispatch(addProductToBasket(id));
   },
   getProductById: id => {
     dispatch(getProductById(id));
@@ -50,5 +59,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProductCartComponent);

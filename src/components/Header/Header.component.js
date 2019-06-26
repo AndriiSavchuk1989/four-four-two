@@ -17,4 +17,5 @@ const HeaderComponent = () => (
     <SearchComponent />
   </Header.Wrapper>
 );
+
 export default HeaderComponent;
