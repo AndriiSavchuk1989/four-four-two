@@ -10,16 +10,10 @@ import QuantityHandlerComponent from '../QuantityHandler/QuantityHandler.compone
 import { addProductToBasket } from '../../actions/product_cart_actions';
 
 type Props = {
-  type?: any,
-  product?: any,
-  addProductToBasket?: any
-};
-
-type PropsProduct = {
-  type?: any,
-  product?: any,
-  id?: any,
-  addProductToBasket?: any
+  type?: String,
+  product?: Object,
+  id?: Number,
+  addProductToBasket?: Function
 };
 
 const RenderHandlers = (props: Props) => {
@@ -60,7 +54,7 @@ RenderHandlers.defaultProps = {
   product: {}
 };
 
-class ProductComponent extends React.Component<PropsProduct> {
+class ProductComponent extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = { productId: null };
