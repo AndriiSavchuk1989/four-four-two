@@ -25,7 +25,7 @@ const RenderHandlers = (props: Props) => {
         <Product.AddToBasketButton
           onClick={props.addProductToBasket}
         >
-          Add to basket
+          <Product.ButtonBackground action="basket" />
         </Product.AddToBasketButton>
       );
     }
@@ -38,10 +38,11 @@ const RenderHandlers = (props: Props) => {
       return (
         <>
           <Product.InfoButton>
-            <Link to={`products/${product.id}`}>More info</Link>
+            <Product.ButtonBackground action="info" />
+            <Link to={`products/${product.id}`} />
           </Product.InfoButton>
           <Product.AddToBasketButton onClick={props.addProductToBasket}>
-            Add to basket
+            <Product.ButtonBackground action="basket" />
           </Product.AddToBasketButton>
         </>
       );
@@ -73,16 +74,18 @@ class ProductComponent extends React.Component<Props> {
   }
 
   render() {
-    const { product, type } = this.props;
+    const { product, product: { price }, type } = this.props;
+    const productPrice = `$${price}`;
 
     return (
       <Product.Wrapper>
+        <Product.Discount />
+        <Product.Icon type={product.type} />
         <Product.Image src={product.image} />
         <Product.Details>
           <Product.Name>{product.name}</Product.Name>
           <Product.Price>
-            $
-            {product.price}
+            {productPrice}
           </Product.Price>
         </Product.Details>
         <Product.ButtonsWrapper>

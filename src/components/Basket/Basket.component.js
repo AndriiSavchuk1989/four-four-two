@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import ProductComponent from '../Product/Product.component';
 import ProductsList from '../ProductsList/ProductsList.styled';
+import BasketWrapper from './Basket.styled';
 
 type PropsBasket = {
   basket?: any
@@ -17,11 +18,13 @@ const Basket = (props: PropsBasket) => {
   const { basket } = props;
 
   return (
-    <ProductsList.Wrapper>
-      {basket.map(product => (
-        <ProductComponent product={product} type="basket" />
-      ))}
-    </ProductsList.Wrapper>
+    <BasketWrapper.Wrapper>
+      <ProductsList.Wrapper type="basket">
+        {basket.map(product => (
+          <ProductComponent product={product} type="basket" />
+        ))}
+      </ProductsList.Wrapper>
+    </BasketWrapper.Wrapper>
   );
 };
 
