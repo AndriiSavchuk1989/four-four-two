@@ -16,7 +16,7 @@ type Props = {
   addProductToBasket?: Function
 };
 
-const RenderHandlers = (props: Props) => {
+const ButtonsGroup = (props: Props) => {
   const { type, product } = props;
 
   switch (type) {
@@ -37,10 +37,11 @@ const RenderHandlers = (props: Props) => {
     default: {
       return (
         <>
-          <Product.InfoButton>
-            <Product.ButtonBackground action="info" />
-            <Link to={`products/${product.id}`} />
-          </Product.InfoButton>
+          <Link to={`products/${product.id}`}>
+            <Product.InfoButton>
+              <Product.ButtonBackground action="info" />
+            </Product.InfoButton>
+          </Link>
           <Product.AddToBasketButton onClick={props.addProductToBasket}>
             <Product.ButtonBackground action="basket" />
           </Product.AddToBasketButton>
@@ -50,7 +51,7 @@ const RenderHandlers = (props: Props) => {
   }
 };
 
-RenderHandlers.defaultProps = {
+ButtonsGroup.defaultProps = {
   type: '',
   product: {}
 };
@@ -89,7 +90,7 @@ class ProductComponent extends React.Component<Props> {
           </Product.Price>
         </Product.Details>
         <Product.ButtonsWrapper>
-          <RenderHandlers
+          <ButtonsGroup
             type={type}
             product={product}
             addProductToBasket={this.addProductToBasket}

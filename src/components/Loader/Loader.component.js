@@ -1,22 +1,15 @@
 import React from 'react';
 import { FadeLoader } from 'react-spinners';
+import Loader from './Loader.styled';
 
 class LoaderComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true
-    };
-  }
-
   render() {
     return (
-      <div className="sweet-loading">
+      <Loader.Wrapper>
         <FadeLoader
-          color="#123abc"
-          loading={this.state.loading}
+          color="rgba(210, 255, 82, 1)"
         />
-      </div>
+      </Loader.Wrapper>
     );
   }
 }
