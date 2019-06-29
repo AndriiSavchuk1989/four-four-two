@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
         ...state, products: [], product: {}, isLoading: true, error: null
       };
     case FETCH_ALL_PRODUCTS_SUCCESS:
-      return { ...state, products: action.payload };
+      return { ...state, products: action.payload, isLoading: false };
     case FETCH_ALL_PRODUCTS_ERROR:
       return { ...state, isLoading: true, error: action.payload };
     case FETCH_PRODUCT_BY_ID_START:
