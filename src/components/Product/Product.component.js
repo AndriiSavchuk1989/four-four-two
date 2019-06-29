@@ -16,7 +16,7 @@ type Props = {
   addProductToBasket?: Function
 };
 
-const Handlers = (props: Props) => {
+const ButtonsGroup = (props: Props) => {
   const { type, product } = props;
 
   switch (type) {
@@ -51,7 +51,7 @@ const Handlers = (props: Props) => {
   }
 };
 
-Handlers.defaultProps = {
+ButtonsGroup.defaultProps = {
   type: '',
   product: {}
 };
@@ -90,7 +90,7 @@ class ProductComponent extends React.Component<Props> {
           </Product.Price>
         </Product.Details>
         <Product.ButtonsWrapper>
-          <Handlers
+          <ButtonsGroup
             type={type}
             product={product}
             addProductToBasket={this.addProductToBasket}
