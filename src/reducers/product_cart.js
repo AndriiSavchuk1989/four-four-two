@@ -1,6 +1,8 @@
 import {
   ADD_PRODUCT_TO_BASKET_SUCCESS,
-  ADD_PRODUCT_TO_BASKET_ERROR
+  ADD_PRODUCT_TO_BASKET_ERROR,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY
 } from '../actions/actions_types';
 
 const initialState = {
@@ -47,6 +49,34 @@ export default (state = initialState, action) => {
       };
     case ADD_PRODUCT_TO_BASKET_ERROR:
       return state;
+
+    case INCREASE_PRODUCT_QUANTITY:
+      tempBasket = [...state.basket];
+      // eslint-disable-next-line no-case-declarations
+      const idx = tempBasket.findIndex(product => product.id === action.payload);
+
+      tempBasket[idx].quantity += 1;
+
+      return {
+        ...state,
+        basket: [...tempBasket],
+        count: state.count + 1,
+        totalPrice: state.totalPrice + tempBasket[idx].price
+      };
+    case DECREASE_PRODUCT_QUANTITY:
+      tempBasket = [...state.basket];
+      // eslint-disable-next-line no-case-declarations
+      const index = tempBasket.findIndex(product => product.id === action.payload);
+
+      tempBasket[index].quantity -= 1;
+
+      return {
+        ...state,
+        basket: [...tempBasket],
+        count: state.count - 1,
+        totalPrice: state.totalPrice - tempBasket[index].price
+      };
+
     default:
       return state;
   }

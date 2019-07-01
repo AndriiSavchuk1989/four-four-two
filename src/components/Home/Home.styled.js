@@ -17,7 +17,8 @@ Home.BackgroundContainer = styled.div`
       rgba(0, 0, 0, 0.5) 50%,
       rgba(0, 0, 0, 0.65) 100%
     ),
-    url('https://img.fclm.ru/media/publication/photo/5b/5b884117cf4fd/orig.jpg?w=-&h=-&hash=I25nZNV9E6xGwMPO2ZZMHQ')
+    url('https://img.fclm.ru/media/publication/photo/5b/
+    5b884117cf4fd/orig.jpg?w=-&h=-&hash=I25nZNV9E6xGwMPO2ZZMHQ')
       no-repeat center;
   background-size: cover;
   height: 100%;
@@ -36,7 +37,7 @@ Home.Header = styled.h1`
   font-size: 32px;
 `;
 
-Home.Description = styled.p`
+Home.Description = styled.div`
   & > * {
     padding: 5px;
   }

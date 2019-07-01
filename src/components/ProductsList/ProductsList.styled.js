@@ -11,7 +11,7 @@ ProductsList.Wrapper = styled.div(({ type }) => {
     align-items: flex-start;
     max-width: 100vw;
     flex-wrap: wrap;
-    position: relative;
+    // position: relative;
     justify-content: ${justifyContent};
 `;
 });

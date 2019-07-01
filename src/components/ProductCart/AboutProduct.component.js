@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+
 // actions
 import { addProductToBasket } from '../../actions/product_cart_actions';
 import { getProductById } from '../../actions/products_list_actions';
+
+// components
 import ProductComponent from '../Product/Product.component';
+
+// styles
+import About from './AboutProduct.styled';
 
 type Props = {
   match?: any,
-  product?: any
+  product?: Object
 };
 
-class ProductCartComponent extends React.Component<Props> {
+class AboutProduct extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = { productId: null };
@@ -29,18 +35,20 @@ class ProductCartComponent extends React.Component<Props> {
     const { productId } = this.state;
 
     return (
-      <ProductComponent
-        product={product}
-        type="info"
-        id={productId}
-      />
+      <About.Wrapper>
+        <ProductComponent
+          product={product}
+          type="info"
+          id={productId}
+        />
+      </About.Wrapper>
     );
   }
 }
 
-ProductCartComponent.defaultProps = {
+AboutProduct.defaultProps = {
   match: null,
-  product: null
+  product: {}
 };
 
 const mapStateToProps = state => ({
@@ -60,4 +68,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductCartComponent);
+)(AboutProduct);

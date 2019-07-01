@@ -24,10 +24,13 @@ QuantityHandler.IncreaseButton = styled(Product.Button)`
 
 QuantityHandler.QuantityView = styled.p`
   width: 50px;
-  height: 16px;
+  height: 50px;
+  border-radius: 50px;
+  line-height: 50px;
+  background-color: white;
   text-align: center;
   padding: 0;
-  margin: 0;
+  margin: 5px;
 `;
 
 export default QuantityHandler;

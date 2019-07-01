@@ -14,8 +14,8 @@ import { addProductToBasket } from '../../actions/product_cart_actions';
 // import getSearchedProducts from '../../selectors/getSearchedProducts';
 
 type Props = {
-  products?: any,
-  isLoading?: boolean
+  products?: Array<Object>,
+  isLoading?: Boolean
 };
 
 class ProductsListComponent extends React.Component<Props> {
@@ -34,8 +34,8 @@ class ProductsListComponent extends React.Component<Props> {
           isLoading ? (
             <LoaderComponent />
           ) : (
-            products.map((prod, item) => (
-              <ProductComponent type="list" key={item.id} product={prod} />
+            products.map((product, item) => (
+              <ProductComponent type="list" key={item.id} product={product} />
             ))
           )
         }
@@ -45,7 +45,7 @@ class ProductsListComponent extends React.Component<Props> {
 }
 
 ProductsListComponent.defaultProps = {
-  products: null,
+  products: [],
   isLoading: false
 };
 

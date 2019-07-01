@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 // styled
 import Product from './Product.styled';
 import QuantityHandlerComponent from '../QuantityHandler/QuantityHandler.component';
+import { InfoComponent } from './ProductDetails.component';
 
 // actions
 import { addProductToBasket } from '../../actions/product_cart_actions';
@@ -31,7 +32,7 @@ const ButtonsGroup = (props: Props) => {
     }
 
     case 'basket': {
-      return <QuantityHandlerComponent />;
+      return <QuantityHandlerComponent currentProductId={product.id} quantity={product.quantity} />;
     }
 
     default: {
@@ -60,34 +61,29 @@ class ProductComponent extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = { productId: null };
-    this.addProductToBasket = this.addProductToBasket.bind(this);
   }
 
   componentDidMount() {
     this.setState((state, props) => { return { productId: props.product.id }; });
   }
 
-  addProductToBasket() {
+  addProductToBasket = () => {
     const { productId } = this.state;
     const id = productId || this.props.id;
 
     this.props.addProductToBasket(id);
-  }
+  };
 
   render() {
-    const { product, product: { price }, type } = this.props;
-    const productPrice = `$${price}`;
+    const { product, type } = this.props;
 
     return (
-      <Product.Wrapper>
+      <Product.Wrapper type={type}>
         <Product.Discount />
         <Product.Icon type={product.type} />
         <Product.Image src={product.image} />
         <Product.Details>
-          <Product.Name>{product.name}</Product.Name>
-          <Product.Price>
-            {productPrice}
-          </Product.Price>
+          <InfoComponent type={type} product={product} />
         </Product.Details>
         <Product.ButtonsWrapper>
           <ButtonsGroup

@@ -7,7 +7,7 @@ import { createBrowserHistory } from 'history';
 import HomeComponent from '../components/Home/Home.component';
 import ProductsListComponent from '../components/ProductsList/ProductsList.component';
 import LayoutComponent from '../components/Layout/Layout.component';
-import ProductCartComponent from '../components/ProductCart/ProductCart.component';
+import AboutProduct from '../components/ProductCart/AboutProduct.component';
 import HeaderComponent from '../components/Header/Header.component';
 import BasketComponent from '../components/Basket/Basket.component';
 
@@ -21,7 +21,7 @@ const App = () => {
         <Route exact path="/" component={HomeComponent} />
         <Route exact path="/products" component={ProductsListComponent} />
       </Route>
-      <Route exact path="/products/:id" component={ProductCartComponent} />
+      <Route exact path="/products/:id" component={AboutProduct} />
       <Route exact path="/basket" component={BasketComponent} />
     </BrowserRouter>
   );

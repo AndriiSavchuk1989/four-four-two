@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { ADD_PRODUCT_TO_BASKET_SUCCESS, ADD_PRODUCT_TO_BASKET_ERROR } from './actions_types';
+import {
+  ADD_PRODUCT_TO_BASKET_SUCCESS, ADD_PRODUCT_TO_BASKET_ERROR,
+  INCREASE_PRODUCT_QUANTITY, DECREASE_PRODUCT_QUANTITY
+} from './actions_types';
 
 export const addProductToBasket = id => dispatch => {
   axios
@@ -18,4 +21,18 @@ export const addProductToBasket = id => dispatch => {
         payload: error.message
       });
     });
+};
+
+export const decreaseProductQuantity = id => dispatch => {
+  dispatch({
+    type: DECREASE_PRODUCT_QUANTITY,
+    payload: id
+  });
+};
+
+export const increaseProductQuantity = id => dispatch => {
+  dispatch({
+    type: INCREASE_PRODUCT_QUANTITY,
+    payload: id
+  });
 };
