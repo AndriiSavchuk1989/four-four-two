@@ -9,9 +9,9 @@ type PropsBasket = {
 };
 
 type Props = {
-  basket?: any,
-  count?: any,
-  totalPrice?: any
+  basket?: Array<Object>,
+  count?: Number,
+  totalPrice?: Number
 };
 
 const Basket = (props: PropsBasket) => {
@@ -28,25 +28,31 @@ const Basket = (props: PropsBasket) => {
   );
 };
 
+const EmptyBasketComponent = () => {
+  return (
+    <BasketWrapper.EmptyBasket>Sorry, Your basket is empty</BasketWrapper.EmptyBasket>
+  );
+};
+
 const BasketComponent = (props: Props) => {
   const { count, basket } = props;
 
   return (
     !count ?
-      <div>Empty</div>
+      <EmptyBasketComponent />
       :
       <Basket basket={basket} />
   );
 };
 
 Basket.defaultProps = {
-  basket: null
+  basket: []
 };
 
 BasketComponent.defaultProps = {
-  basket: null,
-  count: null,
-  totalPrice: null
+  basket: [],
+  count: 0,
+  totalPrice: 0
 };
 
 const mapStateToProps = state => ({

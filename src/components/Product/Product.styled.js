@@ -27,19 +27,23 @@ const lifting = keyframes`
   }
 `;
 
-Product.Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 30%;
-  min-width: 25%;
-  position: relative;
-  min-height: 350px;
-  margin: 4px 4px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  background-color: white;
-`;
+Product.Wrapper = styled.div(({ type }) => {
+  const maxWidth = type === 'info' ? 'none' : '30%';
+
+  return css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: ${maxWidth};
+    min-width: 25%;
+    position: relative;
+    min-height: 350px;
+    margin: 4px 4px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background-color: white;
+  `;
+});
 
 Product.Image = styled.img`
   flex-basis: 200px;
@@ -141,19 +145,19 @@ Product.Name = styled.p`
 Product.Country = styled.p`
   font-size: 16px;
   text-align: center;
-  padding: 5px;
+  padding: 2px;
 `;
 
 Product.Description = styled.p`
   font-size: 14px;
   text-align: center;
-  padding: 5px;
+  padding: 2px;
 `;
 
 Product.Price = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
-  padding: 5px;
+  padding: 2px;
 `;
 
 Product.Count = styled.p`
