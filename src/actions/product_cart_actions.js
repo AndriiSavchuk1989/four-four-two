@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
   ADD_PRODUCT_TO_BASKET_SUCCESS, ADD_PRODUCT_TO_BASKET_ERROR,
-  INCREASE_PRODUCT_QUANTITY, DECREASE_PRODUCT_QUANTITY
+  INCREASE_PRODUCT_QUANTITY, DECREASE_PRODUCT_QUANTITY,
+  SET_USER
 } from './actions_types';
 
 export const addProductToBasket = id => dispatch => {
@@ -34,5 +35,12 @@ export const increaseProductQuantity = id => dispatch => {
   dispatch({
     type: INCREASE_PRODUCT_QUANTITY,
     payload: id
+  });
+};
+
+export const setUser = user => dispatch => {
+  dispatch({
+    type: SET_USER,
+    payload: user
   });
 };

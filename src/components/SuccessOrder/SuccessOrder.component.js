@@ -9,7 +9,8 @@ type Props = {
   totalPrice?: Number,
   customerName?: String,
   customerSurname?: String,
-  customerEmail?: String
+  customerEmail?: String,
+  closeModal?: Function
 };
 
 const SuccessOrderComponent = (props: Props) => {
@@ -19,27 +20,47 @@ const SuccessOrderComponent = (props: Props) => {
     totalPrice,
     customerName,
     customerSurname,
-    customerEmail
+    customerEmail,
+    closeModal
   } = props;
 
   return (
     <SuccessOrder.Wrapper isVisible={isVisible}>
-      <SuccessOrder.Name>{customerName}</SuccessOrder.Name>
-      <SuccessOrder.Surname>{customerSurname}</SuccessOrder.Surname>
-      <SuccessOrder.Email>{customerEmail}</SuccessOrder.Email>
-      <SuccessOrder.Count>{count}</SuccessOrder.Count>
-      <SuccessOrder.Price>{totalPrice}</SuccessOrder.Price>
+      <SuccessOrder.Name>
+        Name:
+        {customerName}
+      </SuccessOrder.Name>
+      <SuccessOrder.Surname>
+        Surname:
+        {customerSurname}
+      </SuccessOrder.Surname>
+      <SuccessOrder.Email>
+        Email:
+        {customerEmail}
+      </SuccessOrder.Email>
+      <SuccessOrder.Count>
+        Quantity:
+        {count}
+      </SuccessOrder.Count>
+      <SuccessOrder.Price>
+        Price:
+        {totalPrice}
+      </SuccessOrder.Price>
+      <SuccessOrder.CloseModal onClick={closeModal}>
+        Close
+      </SuccessOrder.CloseModal>
     </SuccessOrder.Wrapper>
   );
 };
 
 SuccessOrderComponent.defaultProps = {
-  isVisible: false,
+  isVisible: true,
   count: 0,
   totalPrice: 0,
   customerName: '',
   customerSurname: '',
-  customerEmail: ''
+  customerEmail: '',
+  closeModal: null
 };
 
 export default SuccessOrderComponent;
