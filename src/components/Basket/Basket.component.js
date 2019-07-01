@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+
+// components
 import ProductComponent from '../Product/Product.component';
+import PinnedBlockComponent from '../PinnedBlock/PinnedBlock.component';
+
+// styles
 import ProductsList from '../ProductsList/ProductsList.styled';
 import BasketWrapper from './Basket.styled';
-
-type PropsBasket = {
-  basket?: any
-};
 
 type Props = {
   basket?: Array<Object>,
@@ -14,8 +15,8 @@ type Props = {
   totalPrice?: Number
 };
 
-const Basket = (props: PropsBasket) => {
-  const { basket } = props;
+const Basket = (props: Props) => {
+  const { basket, count, totalPrice } = props;
 
   return (
     <BasketWrapper.Wrapper>
@@ -24,6 +25,7 @@ const Basket = (props: PropsBasket) => {
           <ProductComponent product={product} type="basket" />
         ))}
       </ProductsList.Wrapper>
+      <PinnedBlockComponent count={count} totalPrice={totalPrice} />
     </BasketWrapper.Wrapper>
   );
 };
@@ -35,18 +37,20 @@ const EmptyBasketComponent = () => {
 };
 
 const BasketComponent = (props: Props) => {
-  const { count, basket } = props;
+  const { count, basket, totalPrice } = props;
 
   return (
     !count ?
       <EmptyBasketComponent />
       :
-      <Basket basket={basket} />
+      <Basket basket={basket} count={count} totalPrice={totalPrice} />
   );
 };
 
 Basket.defaultProps = {
-  basket: []
+  basket: [],
+  count: 0,
+  totalPrice: 0
 };
 
 BasketComponent.defaultProps = {
