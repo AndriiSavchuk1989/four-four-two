@@ -2,7 +2,8 @@ import {
   ADD_PRODUCT_TO_BASKET_SUCCESS,
   ADD_PRODUCT_TO_BASKET_ERROR,
   INCREASE_PRODUCT_QUANTITY,
-  DECREASE_PRODUCT_QUANTITY
+  DECREASE_PRODUCT_QUANTITY,
+  RESET_STATE
 } from '../actions/actions_types';
 
 const initialState = {
@@ -75,6 +76,13 @@ export default (state = initialState, action) => {
         basket: [...tempBasket],
         count: state.count - 1,
         totalPrice: state.totalPrice - tempBasket[index].price
+      };
+    case RESET_STATE:
+      return {
+        ...state,
+        basket: [],
+        count: 0,
+        totalPrice: 0
       };
 
     default:

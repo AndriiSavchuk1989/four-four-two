@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { setUser } from '../../actions/product_cart_actions';
+import { setUser, resetBasket } from '../../actions/product_cart_actions';
 
 // components
 import ProductComponent from '../Product/Product.component';
@@ -19,6 +19,7 @@ type Props = {
   totalPrice?: Number,
   isVisible?: Boolean,
   setUser?: Function,
+  resetBasket?: Function,
   name?: String,
   surname?: String,
   email?: String
@@ -54,28 +55,21 @@ class BasketComponent extends React.Component<Props> {
     };
   }
 
-  onSubmitHandler = () => {
-    const user = { name: 'Andrew', surname: 'Savchuk', email: 'andrey.m.savchuk@gmail.com' };
+  onSubmitHandler = ({ name, surname, email }) => {
+    if (!name || !surname || !email) {
+      alert('Please, fill your info');
+    } else {
+      const user = { name, surname, email };
 
-    this.props.setUser(user);
+      this.props.setUser(user);
 
-    this.setState(state => { return { isVisible: !state.isVisible }; });
+      this.setState(state => { return { isVisible: !state.isVisible }; });
+      this.props.resetBasket();
+    }
   };
 
   onCloseModalHandler = () => {
     this.setState(state => { return { isVisible: !state.isVisible }; });
-  };
-
-  onChangeHandlerName = event => {
-    this.setState(() => { return { name: event.target.value }; });
-  };
-
-  onChangeHandlerSurname = event => {
-    this.setState(() => { return { surname: event.target.value }; });
-  };
-
-  onChangeHandlerEmail = event => {
-    this.setState(() => { return { email: event.target.value }; });
   };
 
   render() {
@@ -116,7 +110,8 @@ Basket.defaultProps = {
   setUser: null,
   name: '',
   surname: '',
-  email: ''
+  email: '',
+  resetBasket: null
 };
 
 BasketComponent.defaultProps = {
@@ -127,12 +122,16 @@ BasketComponent.defaultProps = {
   setUser: null,
   name: '',
   surname: '',
-  email: ''
+  email: '',
+  resetBasket: null
 };
 
 const mapDispatchToProps = dispatch => ({
   setUser: user => {
     dispatch(setUser(user));
+  },
+  resetBasket: () => {
+    dispatch(resetBasket());
   }
 });
 
