@@ -24,12 +24,11 @@ const SuccessOrderComponent = (props: Props) => {
     closeModal
   } = props;
 
+  const message = `Thank you ${customerName} ${customerSurname} for your order`;
+
   return (
     <SuccessOrder.Wrapper isVisible={isVisible}>
-      <SuccessOrder.Name>
-        Name:
-        {customerName}
-      </SuccessOrder.Name>
+      <SuccessOrder.Name>{ message }</SuccessOrder.Name>
       <SuccessOrder.Surname>
         Surname:
         {customerSurname}

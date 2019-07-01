@@ -64,12 +64,13 @@ class BasketComponent extends React.Component<Props> {
       this.props.setUser(user);
 
       this.setState(state => { return { isVisible: !state.isVisible }; });
-      this.props.resetBasket();
     }
   };
 
   onCloseModalHandler = () => {
     this.setState(state => { return { isVisible: !state.isVisible }; });
+    this.props.resetBasket();
+    window.history.back();
   };
 
   render() {
