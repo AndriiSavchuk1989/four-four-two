@@ -1,7 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import RegistrationForm from './RegistrationForm.styled';
 
-class RegistrationFormComponent extends React.Component {
+// actions
+import { setUser } from '../../actions/product_cart_actions';
+
+type Props = {
+  setUser?: Function
+};
+
+class RegistrationFormComponent extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = { name: '', surname: '', email: '' };
@@ -27,7 +35,8 @@ class RegistrationFormComponent extends React.Component {
 
   onSubmitHandler = () => {
     // eslint-disable-next-line no-console
-    console.log(this.state);
+    this.props.setUser({ ...this.state });
+    window.history.back();
   };
 
   render() {
@@ -67,4 +76,14 @@ class RegistrationFormComponent extends React.Component {
   }
 }
 
-export default RegistrationFormComponent;
+RegistrationFormComponent.defaultProps = {
+  setUser: null
+};
+
+const mapDispatchToProps = dispatch => ({
+  setUser: user => {
+    dispatch(setUser(user));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(RegistrationFormComponent);

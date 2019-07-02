@@ -3,19 +3,69 @@ import React from 'react';
 // styles
 import PinnedBlock from './PinnedBlock.styled';
 
+// components
+import LoggedInComponent from '../LoggedIn/LoggedIn.component';
+
 type Props = {
   count?: Number,
   totalPrice?: Number,
+  name?: String,
+  surname?: String,
+  email?: String,
   submitOrder?: Function,
   setUserName?: Function,
   setUserSurname?: Function,
-  setUserEmail?: Function
+  setUserEmail?: Function,
+  onChangeName?: Function,
+  onChangeSurname?: Function,
+  onChangeEmail?: Function,
+  isLoggedIn?: Boolean
+};
+
+const LateRegistrationComponent = (props: Props) => {
+  const {
+    name,
+    surname,
+    email,
+    onChangeName,
+    onChangeSurname,
+    onChangeEmail
+  } = props;
+
+  return (
+    <>
+      <PinnedBlock.NameInput
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={onChangeName}
+      />
+      <PinnedBlock.SurnameInput
+        type="text"
+        placeholder="Surname"
+        value={surname}
+        onChange={onChangeSurname}
+      />
+      <PinnedBlock.EmailInput
+        type="email"
+        placeholder="E-mail"
+        value={email}
+        onChange={onChangeEmail}
+      />
+    </>
+  );
 };
 
 class PinnedBlockComponent extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = { name: '', surname: '', email: '' };
+  }
+
+  componentDidMount() {
+    const { name, surname, email } = this.props;
+
+    this.setState(() => { return { name, surname, email }; });
   }
 
   onChangeName = event => {
@@ -31,7 +81,14 @@ class PinnedBlockComponent extends React.Component<Props> {
   };
 
   render() {
-    const { count, totalPrice } = this.props;
+    const {
+      count,
+      totalPrice,
+      isLoggedIn,
+      name,
+      surname,
+      email
+    } = this.props;
 
     return (
       <PinnedBlock.Wrapper>
@@ -44,29 +101,30 @@ class PinnedBlockComponent extends React.Component<Props> {
             Count:
             {count}
           </PinnedBlock.TotalCount>
-          <PinnedBlock.SubmitButton onClick={() => this.props.submitOrder(this.state)}>
+          <PinnedBlock.SubmitButton
+            onClick={() => this.props.submitOrder(this.state)}
+          >
             Submit order
           </PinnedBlock.SubmitButton>
         </PinnedBlock.FieldWrapper>
         <PinnedBlock.UserInfoWrapper>
-          <PinnedBlock.NameInput
-            type="text"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={this.onChangeName}
-          />
-          <PinnedBlock.SurnameInput
-            type="text"
-            placeholder="Surname"
-            value={this.state.surname}
-            onChange={this.onChangeSurname}
-          />
-          <PinnedBlock.EmailInput
-            type="email"
-            placeholder="E-mail"
-            value={this.state.email}
-            onChange={this.onChangeEmail}
-          />
+          {isLoggedIn ? (
+            <LoggedInComponent
+              name={name}
+              surname={surname}
+              email={email}
+            />
+          ) : (
+            <LateRegistrationComponent
+              name={this.state.name}
+              surname={this.state.surname}
+              email={this.state.email}
+              onChangeName={this.onChangeName}
+              onChangeSurname={this.onChangeSurname}
+              onChangeEmail={this.onChangeEmail}
+            />
+          )
+          }
         </PinnedBlock.UserInfoWrapper>
       </PinnedBlock.Wrapper>
     );
@@ -79,7 +137,30 @@ PinnedBlockComponent.defaultProps = {
   submitOrder: null,
   setUserName: null,
   setUserSurname: null,
-  setUserEmail: null
+  setUserEmail: null,
+  isLoggedIn: false,
+  name: '',
+  surname: '',
+  email: '',
+  onChangeName: null,
+  onChangeSurname: null,
+  onChangeEmail: null
+};
+
+LateRegistrationComponent.defaultProps = {
+  count: 0,
+  totalPrice: 0,
+  submitOrder: null,
+  setUserName: null,
+  setUserSurname: null,
+  setUserEmail: null,
+  isLoggedIn: false,
+  name: '',
+  surname: '',
+  email: '',
+  onChangeName: null,
+  onChangeSurname: null,
+  onChangeEmail: null
 };
 
 export default PinnedBlockComponent;
