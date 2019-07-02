@@ -5,7 +5,8 @@ const initialState = {
     name: '',
     surname: '',
     email: ''
-  }
+  },
+  isLoggedIn: false
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +19,8 @@ export default (state = initialState, action) => {
           name: action.payload.name,
           surname: action.payload.surname,
           email: action.payload.email
-        }
+        },
+        isLoggedIn: !state.isLoggedIn
       };
 
 
