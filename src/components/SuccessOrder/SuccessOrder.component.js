@@ -59,7 +59,7 @@ SuccessOrderComponent.defaultProps = {
   customerName: '',
   customerSurname: '',
   customerEmail: '',
-  closeModal: null
+  closeModal: () => {}
 };
 
 export default SuccessOrderComponent;

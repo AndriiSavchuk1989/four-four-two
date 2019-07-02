@@ -68,8 +68,8 @@ class QuantityHandlerComponent extends React.Component<Props> {
 QuantityHandlerComponent.defaultProps = {
   quantity: 0,
   currentProductId: null,
-  increase: null,
-  decrease: null
+  increase: () => {},
+  decrease: () => {}
 };
 
 const mapStateToProps = state => ({

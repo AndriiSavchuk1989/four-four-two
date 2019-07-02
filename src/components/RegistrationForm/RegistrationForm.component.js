@@ -77,7 +77,7 @@ class RegistrationFormComponent extends React.Component<Props> {
 }
 
 RegistrationFormComponent.defaultProps = {
-  setUser: null
+  setUser: () => {}
 };
 
 const mapDispatchToProps = dispatch => ({

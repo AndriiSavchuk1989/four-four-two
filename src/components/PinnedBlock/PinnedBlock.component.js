@@ -62,12 +62,6 @@ class PinnedBlockComponent extends React.Component<Props> {
     this.state = { name: '', surname: '', email: '' };
   }
 
-  componentDidMount() {
-    const { name, surname, email } = this.props;
-
-    this.setState(() => { return { name, surname, email }; });
-  }
-
   onChangeName = event => {
     this.setState({ name: event.target.value });
   };
@@ -116,6 +110,9 @@ class PinnedBlockComponent extends React.Component<Props> {
             />
           ) : (
             <LateRegistrationComponent
+              name={this.state.name}
+              surname={this.state.surname}
+              email={this.state.email}
               onChangeName={this.onChangeName}
               onChangeSurname={this.onChangeSurname}
               onChangeEmail={this.onChangeEmail}
@@ -139,9 +136,9 @@ PinnedBlockComponent.defaultProps = {
   name: '',
   surname: '',
   email: '',
-  onChangeName: null,
-  onChangeSurname: null,
-  onChangeEmail: null
+  onChangeName: () => {},
+  onChangeSurname: () => {},
+  onChangeEmail: () => {}
 };
 
 LateRegistrationComponent.defaultProps = {
@@ -155,9 +152,9 @@ LateRegistrationComponent.defaultProps = {
   name: '',
   surname: '',
   email: '',
-  onChangeName: null,
-  onChangeSurname: null,
-  onChangeEmail: null
+  onChangeName: () => {},
+  onChangeSurname: () => {},
+  onChangeEmail: () => {}
 };
 
 export default PinnedBlockComponent;

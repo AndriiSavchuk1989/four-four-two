@@ -56,6 +56,16 @@ class BasketComponent extends React.Component<Props> {
     };
   }
 
+  componentDidMount() {
+    const { name, surname, email } = this.props;
+
+    this.setState(state => {
+      return {
+        ...state, name, surname, email
+      };
+    });
+  }
+
   onSubmitHandler = ({ name, surname, email }) => {
     if (!name || !surname || !email) {
       alert('Please, fill your info');
@@ -121,11 +131,11 @@ Basket.defaultProps = {
   count: 0,
   totalPrice: 0,
   isVisible: true,
-  setUser: null,
+  setUser: () => {},
   name: '',
   surname: '',
   email: '',
-  resetBasket: null,
+  resetBasket: () => {},
   isLoggedIn: false
 };
 
@@ -134,11 +144,11 @@ BasketComponent.defaultProps = {
   count: 0,
   totalPrice: 0,
   isVisible: false,
-  setUser: null,
+  setUser: () => {},
   name: '',
   surname: '',
   email: '',
-  resetBasket: null,
+  resetBasket: () => {},
   isLoggedIn: false
 };
 

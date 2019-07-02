@@ -101,7 +101,7 @@ ProductComponent.defaultProps = {
   type: '',
   product: {},
   id: null,
-  addProductToBasket: null
+  addProductToBasket: () => {}
 };
 
 const mapDispatchToProps = dispatch => ({
