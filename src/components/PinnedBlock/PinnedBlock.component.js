@@ -116,9 +116,6 @@ class PinnedBlockComponent extends React.Component<Props> {
             />
           ) : (
             <LateRegistrationComponent
-              name={this.state.name}
-              surname={this.state.surname}
-              email={this.state.email}
               onChangeName={this.onChangeName}
               onChangeSurname={this.onChangeSurname}
               onChangeEmail={this.onChangeEmail}

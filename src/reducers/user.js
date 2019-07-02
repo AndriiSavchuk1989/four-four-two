@@ -20,11 +20,14 @@ export default (state = initialState, action) => {
           surname: action.payload.surname,
           email: action.payload.email
         },
-        isLoggedIn: !state.isLoggedIn
+        isLoggedIn: true
       };
 
 
     default:
-      return state;
+      return {
+        ...state,
+        isLoggedIn: state.isLoggedIn
+      };
   }
 };
