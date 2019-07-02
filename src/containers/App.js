@@ -10,6 +10,7 @@ import LayoutComponent from '../components/Layout/Layout.component';
 import AboutProduct from '../components/ProductCart/AboutProduct.component';
 import HeaderComponent from '../components/Header/Header.component';
 import BasketComponent from '../components/Basket/Basket.component';
+import RegistrationFormComponent from '../components/RegistrationForm/RegistrationForm.component';
 
 const history = createBrowserHistory();
 
@@ -20,6 +21,7 @@ const App = () => {
       <Route component={LayoutComponent}>
         <Route exact path="/" component={HomeComponent} />
         <Route exact path="/products" component={ProductsListComponent} />
+        <Route exact path="/registration" component={RegistrationFormComponent} />
       </Route>
       <Route exact path="/products/:id" component={AboutProduct} />
       <Route exact path="/basket" component={BasketComponent} />

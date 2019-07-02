@@ -14,6 +14,9 @@ const HeaderComponent = () => (
     <Header.LinkItem>
       <Link to="/basket">Basket</Link>
     </Header.LinkItem>
+    <Header.LinkItem>
+      <Link to="/registration">Registration</Link>
+    </Header.LinkItem>
     <SearchComponent />
   </Header.Wrapper>
 );

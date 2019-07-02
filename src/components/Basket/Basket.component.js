@@ -22,7 +22,8 @@ type Props = {
   resetBasket?: Function,
   name?: String,
   surname?: String,
-  email?: String
+  email?: String,
+  isLoggedIn?: Boolean
 };
 
 const Basket = (props: Props) => {
@@ -32,7 +33,7 @@ const Basket = (props: Props) => {
     <BasketWrapper.Wrapper isVisible={isVisible}>
       <ProductsList.Wrapper type="basket">
         {basket.map(product => (
-          <ProductComponent product={product} type="basket" />
+          <ProductComponent key={product.id} product={product} type="basket" />
         ))}
       </ProductsList.Wrapper>
     </BasketWrapper.Wrapper>
@@ -55,6 +56,16 @@ class BasketComponent extends React.Component<Props> {
     };
   }
 
+  componentDidMount() {
+    const { name, surname, email } = this.props;
+
+    this.setState(state => {
+      return {
+        ...state, name, surname, email
+      };
+    });
+  }
+
   onSubmitHandler = ({ name, surname, email }) => {
     if (!name || !surname || !email) {
       alert('Please, fill your info');
@@ -74,7 +85,15 @@ class BasketComponent extends React.Component<Props> {
   };
 
   render() {
-    const { count, basket, totalPrice } = this.props;
+    const {
+      count,
+      basket,
+      totalPrice,
+      isLoggedIn,
+      name,
+      surname,
+      email
+    } = this.props;
     const { isVisible } = this.state;
 
     return (
@@ -87,6 +106,10 @@ class BasketComponent extends React.Component<Props> {
               count={count}
               totalPrice={totalPrice}
               submitOrder={this.onSubmitHandler}
+              isLoggedIn={isLoggedIn}
+              name={name}
+              surname={surname}
+              email={email}
             />
             <SuccessOrderComponent
               isVisible={isVisible}
@@ -108,11 +131,12 @@ Basket.defaultProps = {
   count: 0,
   totalPrice: 0,
   isVisible: true,
-  setUser: null,
+  setUser: () => {},
   name: '',
   surname: '',
   email: '',
-  resetBasket: null
+  resetBasket: () => {},
+  isLoggedIn: false
 };
 
 BasketComponent.defaultProps = {
@@ -120,11 +144,12 @@ BasketComponent.defaultProps = {
   count: 0,
   totalPrice: 0,
   isVisible: false,
-  setUser: null,
+  setUser: () => {},
   name: '',
   surname: '',
   email: '',
-  resetBasket: null
+  resetBasket: () => {},
+  isLoggedIn: false
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -142,7 +167,8 @@ const mapStateToProps = state => ({
   totalPrice: state.basket.totalPrice,
   name: state.user.user.name,
   surname: state.user.user.surname,
-  email: state.user.user.email
+  email: state.user.user.email,
+  isLoggedIn: state.user.isLoggedIn
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BasketComponent);

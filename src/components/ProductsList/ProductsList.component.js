@@ -34,8 +34,8 @@ class ProductsListComponent extends React.Component<Props> {
           isLoading ? (
             <LoaderComponent />
           ) : (
-            products.map((product, item) => (
-              <ProductComponent type="list" key={item.id} product={product} />
+            products.map(product => (
+              <ProductComponent type="list" key={product.id} product={product} />
             ))
           )
         }
