@@ -62,6 +62,12 @@ class PinnedBlockComponent extends React.Component<Props> {
     this.state = { name: '', surname: '', email: '' };
   }
 
+  componentDidMount() {
+    this.setState((state, props) => {
+      return { name: props.name, surname: props.surname, email: props.email };
+    });
+  }
+
   onChangeName = event => {
     this.setState({ name: event.target.value });
   };
