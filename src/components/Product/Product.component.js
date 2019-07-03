@@ -64,7 +64,7 @@ class ProductComponent extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.setState((state, props) => { return { productId: props.product.id }; });
+    this.setState((state, props) => { return { productId: props.id }; });
   }
 
   addProductToBasket = () => {

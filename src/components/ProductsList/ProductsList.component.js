@@ -35,7 +35,7 @@ class ProductsListComponent extends React.Component<Props> {
             <LoaderComponent />
           ) : (
             products.map(product => (
-              <ProductComponent type="list" key={product.id} product={product} />
+              <ProductComponent type="list" key={product.id} product={product} id={product.id} />
             ))
           )
         }

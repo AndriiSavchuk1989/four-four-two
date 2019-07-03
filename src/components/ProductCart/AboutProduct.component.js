@@ -10,10 +10,12 @@ import ProductComponent from '../Product/Product.component';
 
 // styles
 import About from './AboutProduct.styled';
+import LoaderComponent from '../Loader/Loader.component';
 
 type Props = {
   match?: any,
-  product?: Object
+  product?: Object,
+  isLoading?: Boolean
 };
 
 class AboutProduct extends React.Component<Props> {
@@ -31,16 +33,22 @@ class AboutProduct extends React.Component<Props> {
   }
 
   render() {
-    const { product } = this.props;
+    const { product, isLoading } = this.props;
     const { productId } = this.state;
 
     return (
       <About.Wrapper>
-        <ProductComponent
-          product={product}
-          type="info"
-          id={productId}
-        />
+        {
+          isLoading ? (
+            <LoaderComponent />
+          ) : (
+            <ProductComponent
+              product={product}
+              type="info"
+              id={productId}
+            />
+          )
+        }
       </About.Wrapper>
     );
   }
@@ -48,11 +56,13 @@ class AboutProduct extends React.Component<Props> {
 
 AboutProduct.defaultProps = {
   match: null,
-  product: {}
+  product: {},
+  isLoading: false
 };
 
 const mapStateToProps = state => ({
   product: state.product.product,
+  isLoading: state.product.isLoading,
   basket: state.basket.basket
 });
 
