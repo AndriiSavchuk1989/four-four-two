@@ -4,5 +4,11 @@ import { combineReducers } from 'redux';
 import products from './products';
 import basket from './product_cart';
 import user from './user';
+import product from './product';
 
-export default combineReducers({ products, basket, user });
+export default combineReducers({
+  products,
+  basket,
+  user,
+  product
+});

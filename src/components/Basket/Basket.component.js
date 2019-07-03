@@ -2,7 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { setUser, resetBasket } from '../../actions/product_cart_actions';
+import { resetBasket } from '../../actions/product_cart_actions';
+import { setUser } from '../../actions/user';
 
 // components
 import ProductComponent from '../Product/Product.component';

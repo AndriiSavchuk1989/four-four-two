@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // actions
 import { addProductToBasket } from '../../actions/product_cart_actions';
-import { getProductById } from '../../actions/products_list_actions';
+import { getProductById } from '../../actions/product';
 
 // components
 import ProductComponent from '../Product/Product.component';
@@ -52,7 +52,7 @@ AboutProduct.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  product: state.products.product,
+  product: state.product.product,
   basket: state.basket.basket
 });
 
