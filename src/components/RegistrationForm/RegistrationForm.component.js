@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// style
 import RegistrationForm from './RegistrationForm.styled';
 
 // actions
-import { setUser } from '../../actions/product_cart_actions';
+import { setUser } from '../../actions/user';
 
 type Props = {
   setUser?: Function
