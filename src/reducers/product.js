@@ -13,13 +13,13 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCT_BY_ID_START: {
-      return { ...state };
+      return { ...state, isLoading: true };
     }
 
     case FETCH_PRODUCT_BY_ID_SUCCESS: {
       return {
         ...state,
-        isLoading: true,
+        isLoading: false,
         product: action.payload
       };
     }
