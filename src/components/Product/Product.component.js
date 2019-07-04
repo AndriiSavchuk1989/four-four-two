@@ -2,8 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-// styled
+// styles
 import Product from './Product.styled';
+
+// components
 import QuantityHandlerComponent from '../QuantityHandler/QuantityHandler.component';
 import { InfoComponent } from './ProductDetails.component';
 

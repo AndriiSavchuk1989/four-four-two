@@ -1,4 +1,6 @@
 import React from 'react';
+
+// styles
 import LoggedIn from './LoggedIn.styled';
 
 type Props = {

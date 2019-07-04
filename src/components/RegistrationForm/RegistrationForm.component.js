@@ -42,6 +42,8 @@ class RegistrationFormComponent extends React.Component<Props> {
   };
 
   render() {
+    const { state } = this;
+
     return (
       <RegistrationForm.Wrapper>
         <RegistrationForm.RegistrationHeader>
@@ -50,21 +52,21 @@ class RegistrationFormComponent extends React.Component<Props> {
         <RegistrationForm.InputsGroup>
           <RegistrationForm.Input
             name="name"
-            value={this.state.name}
+            value={state.name}
             type="text"
             placeholder="Name"
             onChange={this.onNameChange}
           />
           <RegistrationForm.Input
             name="surname"
-            value={this.state.surname}
+            value={state.surname}
             type="text"
             placeholder="Surname"
             onChange={this.onSurnameChange}
           />
           <RegistrationForm.Input
             name="email"
-            value={this.state.email}
+            value={state.email}
             type="text"
             placeholder="Email"
             onChange={this.onEmailChange}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// styles
 import Layout from './Layout.styled';
 
 type Props = {

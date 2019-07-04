@@ -90,6 +90,8 @@ class PinnedBlockComponent extends React.Component<Props> {
       email
     } = this.props;
 
+    const { state } = this;
+
     return (
       <PinnedBlock.Wrapper>
         <PinnedBlock.FieldWrapper>
@@ -116,9 +118,9 @@ class PinnedBlockComponent extends React.Component<Props> {
             />
           ) : (
             <LateRegistrationComponent
-              name={this.state.name}
-              surname={this.state.surname}
-              email={this.state.email}
+              name={state.name}
+              surname={state.surname}
+              email={state.email}
               onChangeName={this.onChangeName}
               onChangeSurname={this.onChangeSurname}
               onChangeEmail={this.onChangeEmail}

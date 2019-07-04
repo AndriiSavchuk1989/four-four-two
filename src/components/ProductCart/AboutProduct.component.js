@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { addProductToBasket } from '../../actions/product_cart_actions';
 import { getProductById } from '../../actions/product';
 
-// components
-import ProductComponent from '../Product/Product.component';
-
 // styles
 import About from './AboutProduct.styled';
 import LoaderComponent from '../Loader/Loader.component';
+
+// components
+import ProductComponent from '../Product/Product.component';
 
 type Props = {
   match?: any,

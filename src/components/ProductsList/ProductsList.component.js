@@ -11,7 +11,6 @@ import ProductComponent from '../Product/Product.component';
 // actions
 import { fetchAllProducts } from '../../actions/products_list_actions';
 import { addProductToBasket } from '../../actions/product_cart_actions';
-// import getSearchedProducts from '../../selectors/getSearchedProducts';
 
 type Props = {
   products?: Array<Object>,
