@@ -18,20 +18,14 @@ class RegistrationFormComponent extends React.Component<Props> {
   }
 
   onNameChange = event => {
-    // eslint-disable-next-line no-console
-    console.log('name__', event.target.value);
     this.setState({ name: event.target.value });
   };
 
   onSurnameChange = event => {
-    // eslint-disable-next-line no-console
-    console.log('surname__', event.target.value);
     this.setState({ surname: event.target.value });
   };
 
   onEmailChange = event => {
-    // eslint-disable-next-line no-console
-    console.log('email__', event.target.value);
     this.setState({ email: event.target.value });
   };
 

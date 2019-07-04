@@ -17,7 +17,7 @@ SuccessOrder.Wrapper = styled.div(({ isVisible }) => {
 `;
 });
 
-SuccessOrder.Name = styled.p``;
+SuccessOrder.Message = styled.p``;
 SuccessOrder.Surname = styled.p``;
 SuccessOrder.Count = styled.p``;
 SuccessOrder.Price = styled.p``;

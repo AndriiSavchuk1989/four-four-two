@@ -11,6 +11,7 @@ import ProductComponent from '../Product/Product.component';
 // actions
 import { fetchAllProducts } from '../../actions/products_list_actions';
 import { addProductToBasket } from '../../actions/product_cart_actions';
+import { ableToSearch, unableToSearch } from '../../actions/search';
 
 type Props = {
   products?: Array<Object>,
@@ -22,6 +23,13 @@ class ProductsListComponent extends React.Component<Props> {
     const { props } = this;
 
     props.fetchAllProducts();
+    props.ableToSearch();
+  }
+
+  componentWillUnmount() {
+    const { props } = this;
+
+    props.unableToSearch();
   }
 
   render() {
@@ -59,6 +67,12 @@ const mapDispatchToProps = dispatch => ({
   },
   addProductToBasket: id => {
     dispatch(addProductToBasket(id));
+  },
+  ableToSearch: () => {
+    dispatch(ableToSearch());
+  },
+  unableToSearch: () => {
+    dispatch(unableToSearch());
   }
 });
 

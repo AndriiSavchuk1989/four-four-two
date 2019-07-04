@@ -4,31 +4,24 @@ import React from 'react';
 import LoggedIn from './LoggedIn.styled';
 
 type Props = {
-  name?: String,
-  surname?: String,
-  email?: String
+  name?: String
 };
 
 const LoggedInComponent = (props: Props) => {
   const {
-    name,
-    surname,
-    email
+    name
   } = props;
+  const message = `Welcome, ${name}`;
 
   return (
     <>
-      <LoggedIn.Field>{name}</LoggedIn.Field>
-      <LoggedIn.Field>{surname}</LoggedIn.Field>
-      <LoggedIn.Field>{email}</LoggedIn.Field>
+      <LoggedIn.Field>{message}</LoggedIn.Field>
     </>
   );
 };
 
 LoggedInComponent.defaultProps = {
-  name: '',
-  surname: '',
-  email: ''
+  name: ''
 };
 
 export default LoggedInComponent;
