@@ -6,13 +6,10 @@ import { resetBasket } from '../../actions/product_cart_actions';
 import { setUser } from '../../actions/user';
 
 // components
-import ProductComponent from '../Product/Product.component';
 import PinnedBlockComponent from '../PinnedBlock/PinnedBlock.component';
 import SuccessOrderComponent from '../SuccessOrder/SuccessOrder.component';
-
-// styles
-import ProductsList from '../ProductsList/ProductsList.styled';
-import BasketWrapper from './Basket.styled';
+import { Basket } from './BasketBasic';
+import { EmptyBasketComponent } from './EmptyBasket';
 
 type Props = {
   basket?: Array<Object>,
@@ -25,28 +22,6 @@ type Props = {
   surname?: String,
   email?: String,
   isLoggedIn?: Boolean
-};
-
-const Basket = (props: Props) => {
-  const { basket, isVisible } = props;
-
-  return (
-    <BasketWrapper.Wrapper isVisible={isVisible}>
-      <ProductsList.Wrapper type="basket">
-        {basket.map(product => (
-          <ProductComponent key={product.id} product={product} type="basket" />
-        ))}
-      </ProductsList.Wrapper>
-    </BasketWrapper.Wrapper>
-  );
-};
-
-const EmptyBasketComponent = () => {
-  return (
-    <BasketWrapper.EmptyBasket>
-      Sorry, Your basket is empty. Please make your order
-    </BasketWrapper.EmptyBasket>
-  );
 };
 
 class BasketComponent extends React.Component<Props> {
@@ -126,19 +101,6 @@ class BasketComponent extends React.Component<Props> {
     );
   }
 }
-
-Basket.defaultProps = {
-  basket: [],
-  count: 0,
-  totalPrice: 0,
-  isVisible: true,
-  setUser: () => {},
-  name: '',
-  surname: '',
-  email: '',
-  resetBasket: () => {},
-  isLoggedIn: false
-};
 
 BasketComponent.defaultProps = {
   basket: [],
