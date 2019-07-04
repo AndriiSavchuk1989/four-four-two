@@ -25,29 +25,17 @@ const SuccessOrderComponent = (props: Props) => {
   } = props;
 
   const message = `Thank you ${customerName} ${customerSurname} for your order`;
+  const userEmail = `E-mail: ${customerEmail}`;
+  const productsQuantity = `Quantity: ${count}`;
+  const overalPrice = `Price: ${totalPrice}`;
 
   return (
     <SuccessOrder.Wrapper isVisible={isVisible}>
-      <SuccessOrder.Name>{ message }</SuccessOrder.Name>
-      <SuccessOrder.Surname>
-        Surname:
-        {customerSurname}
-      </SuccessOrder.Surname>
-      <SuccessOrder.Email>
-        Email:
-        {customerEmail}
-      </SuccessOrder.Email>
-      <SuccessOrder.Count>
-        Quantity:
-        {count}
-      </SuccessOrder.Count>
-      <SuccessOrder.Price>
-        Price:
-        {totalPrice}
-      </SuccessOrder.Price>
-      <SuccessOrder.CloseModal onClick={closeModal}>
-        Close
-      </SuccessOrder.CloseModal>
+      <SuccessOrder.Message>{message}</SuccessOrder.Message>
+      <SuccessOrder.Email>{userEmail}</SuccessOrder.Email>
+      <SuccessOrder.Count>{productsQuantity}</SuccessOrder.Count>
+      <SuccessOrder.Price>{overalPrice}</SuccessOrder.Price>
+      <SuccessOrder.CloseModal onClick={closeModal}>Close</SuccessOrder.CloseModal>
     </SuccessOrder.Wrapper>
   );
 };

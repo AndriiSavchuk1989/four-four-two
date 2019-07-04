@@ -10,6 +10,7 @@ import PinnedBlockComponent from '../PinnedBlock/PinnedBlock.component';
 import SuccessOrderComponent from '../SuccessOrder/SuccessOrder.component';
 import { Basket } from './BasketBasic';
 import { EmptyBasketComponent } from './EmptyBasket';
+import NotRegisteredComponent from '../NotResgistered/NotRegistered.component';
 
 type Props = {
   basket?: Array<Object>,
@@ -28,7 +29,11 @@ class BasketComponent extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false, name: '', surname: '', email: ''
+      isVisible: false,
+      showRegistrationMessage: false,
+      name: '',
+      surname: '',
+      email: ''
     };
   }
 
@@ -44,7 +49,9 @@ class BasketComponent extends React.Component<Props> {
 
   onSubmitHandler = ({ name, surname, email }) => {
     if (!name || !surname || !email) {
-      alert('Please, fill your info');
+      this.setState(state => {
+        return { showRegistrationMessage: !state.showRegistrationMessage };
+      });
     } else {
       const user = { name, surname, email };
 
@@ -60,6 +67,10 @@ class BasketComponent extends React.Component<Props> {
     window.history.back();
   };
 
+  closeRegistrationMessage = () => {
+    this.setState(state => { return { showRegistrationMessage: !state.showRegistrationMessage }; });
+  };
+
   render() {
     const {
       count,
@@ -70,7 +81,7 @@ class BasketComponent extends React.Component<Props> {
       surname,
       email
     } = this.props;
-    const { isVisible } = this.state;
+    const { isVisible, showRegistrationMessage } = this.state;
 
     return (
       !count ?
@@ -92,9 +103,13 @@ class BasketComponent extends React.Component<Props> {
               closeModal={this.onCloseModalHandler}
               count={count}
               totalPrice={totalPrice}
-              customerName={this.props.name}
-              customerSurname={this.props.surname}
-              customerEmail={this.props.email}
+              customerName={name}
+              customerSurname={surname}
+              customerEmail={email}
+            />
+            <NotRegisteredComponent
+              showRegistrationMessage={showRegistrationMessage}
+              closeMessage={this.closeRegistrationMessage}
             />
           </>
         )

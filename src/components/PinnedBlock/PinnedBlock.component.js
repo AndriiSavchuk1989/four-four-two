@@ -30,15 +30,33 @@ class PinnedBlockComponent extends React.Component<Props> {
   }
 
   onChangeName = event => {
-    this.setState({ name: event.target.value });
+    const { target: { value } } = event;
+
+    if (!value) {
+      this.setState({ name: 'error' });
+    } else {
+      this.setState({ name: value });
+    }
   };
 
   onChangeSurname = event => {
-    this.setState({ surname: event.target.value });
+    const { target: { value } } = event;
+
+    if (!value) {
+      this.setState({ surname: 'error' });
+    } else {
+      this.setState({ surname: value });
+    }
   };
 
   onChangeEmail = event => {
-    this.setState({ email: event.target.value });
+    const { target: { value } } = event;
+
+    if (!value) {
+      this.setState({ email: 'error' });
+    } else {
+      this.setState({ email: value });
+    }
   };
 
   render() {
