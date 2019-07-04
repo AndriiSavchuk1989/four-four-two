@@ -63,6 +63,8 @@ Home.ButtonWrapper = styled.div`
   }
 `;
 
+Home.Text = styled.p``;
+
 Home.VideoBackground = styled.video`
 `;
 
