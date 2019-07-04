@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 // styles
 import Home from './Home.styled';
 
+const text = [
+  'If you a football fan and you got a favourite team?',
+  'If you know what means EPL, Italian Serie A, German Bundesliga or Spanish Primera?',
+  'Then you might be here and explore our staff!'
+];
+
 const HomeComponent = () => {
   return (
     <Home.Wrapper>
@@ -11,12 +17,11 @@ const HomeComponent = () => {
         <Home.DescriptionContent>
           <Home.Header>Four-Four-Two</Home.Header>
           <Home.Description>
-            <Home.Text>If you a football fan and you got a favourite team?</Home.Text>
-            <Home.Text>
-              If you know what means EPL, Italian Serie A, German Bundesliga,
-              Spanish Primera?
-            </Home.Text>
-            <Home.Text>Then you might be here and explore our staff!</Home.Text>
+            {
+              text.map(txt => (
+                <Home.Text key={txt}>{txt}</Home.Text>
+              ))
+            }
           </Home.Description>
         </Home.DescriptionContent>
         <Home.ButtonWrapper>

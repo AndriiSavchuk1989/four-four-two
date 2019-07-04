@@ -4,7 +4,7 @@ const Home = {};
 
 Home.Wrapper = styled.div`
   margin-top: 50px;
-  height: 94.7vh;
+  height: 94vh;
   overflow: hidden;
   color: white;
 `;
@@ -17,7 +17,9 @@ Home.BackgroundContainer = styled.div`
       rgba(0, 0, 0, 0.5) 50%,
       rgba(0, 0, 0, 0.65) 100%
     ),
-    url('../../static/home_page_background_image/background.jpg') no-repeat center;
+    // eslint-disable-next-line max-len
+    url('https://klankosova.tv/wp-content/uploads/2018/09/a02cc1fba16a21dc75a2d244d2fb8833.jpg') 
+    no-repeat center;
   background-size: cover;
   height: 100%;
 `;
