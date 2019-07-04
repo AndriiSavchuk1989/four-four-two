@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// styles
 import Search from './Search.styled';
 
 class SearchComponent extends Component {

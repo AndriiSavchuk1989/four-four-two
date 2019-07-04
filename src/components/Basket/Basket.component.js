@@ -162,14 +162,14 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-const mapStateToProps = state => ({
-  count: state.basket.count,
-  basket: state.basket.basket,
-  totalPrice: state.basket.totalPrice,
-  name: state.user.user.name,
-  surname: state.user.user.surname,
-  email: state.user.user.email,
-  isLoggedIn: state.user.isLoggedIn
+const mapStateToProps = ({ basket, user }) => ({
+  count: basket.count,
+  basket: basket.data,
+  totalPrice: basket.totalPrice,
+  name: user.data.name,
+  surname: user.data.surname,
+  email: user.data.email,
+  isLoggedIn: user.isLoggedIn
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BasketComponent);

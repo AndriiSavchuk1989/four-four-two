@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+// styles
 import Product from './Product.styled';
 
 type PropsD = {
@@ -6,12 +8,12 @@ type PropsD = {
 };
 
 const ProductBasicDetails = (props: PropsD) => {
-  const { product } = props;
-  const productPrice = `$${product.price}`;
+  const { product: { price, name } } = props;
+  const productPrice = `$${price}`;
 
   return (
     <>
-      <Product.Name>{product.name}</Product.Name>
+      <Product.Name>{name}</Product.Name>
       <Product.Price>{productPrice}</Product.Price>
     </>
   );
@@ -22,14 +24,22 @@ ProductBasicDetails.defaultProps = {
 };
 
 const ProductDescriptionComponent = (props: PropsD) => {
-  const { product } = props;
-  const productPrice = `$${product.price}`;
+  const {
+    product: {
+      price,
+      name,
+      country,
+      description,
+      quantity
+    }
+  } = props;
+  const productPrice = `$${price}`;
 
   return (
     <>
       <Product.Name>
         Name:
-        {product.name}
+        {name}
       </Product.Name>
       <Product.Price>
         Price:
@@ -37,15 +47,15 @@ const ProductDescriptionComponent = (props: PropsD) => {
       </Product.Price>
       <Product.Country>
         Country:
-        {product.country}
+        {country}
       </Product.Country>
       <Product.Description>
         Description:
-        {product.description}
+        {description}
       </Product.Description>
       <Product.Count>
         Quantity:
-        {product.quantity}
+        {quantity}
       </Product.Count>
     </>
   );
@@ -81,5 +91,3 @@ InfoComponent.defaultProps = {
   product: {},
   type: ''
 };
-
-export default InfoComponent;

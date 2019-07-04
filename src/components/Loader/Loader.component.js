@@ -1,5 +1,7 @@
 import React from 'react';
 import { FadeLoader } from 'react-spinners';
+
+// styles
 import Loader from './Loader.styled';
 
 class LoaderComponent extends React.Component {

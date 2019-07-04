@@ -11,7 +11,6 @@ import ProductComponent from '../Product/Product.component';
 // actions
 import { fetchAllProducts } from '../../actions/products_list_actions';
 import { addProductToBasket } from '../../actions/product_cart_actions';
-// import getSearchedProducts from '../../selectors/getSearchedProducts';
 
 type Props = {
   products?: Array<Object>,
@@ -49,9 +48,9 @@ ProductsListComponent.defaultProps = {
   isLoading: false
 };
 
-const mapStateToProps = state => ({
-  products: state.products.products,
-  isLoading: state.products.isLoading
+const mapStateToProps = ({ products }) => ({
+  products: products.data,
+  isLoading: products.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({

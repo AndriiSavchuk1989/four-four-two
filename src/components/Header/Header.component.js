@@ -1,8 +1,9 @@
 import React from 'react';
 
-// style
+// styles
 import Header from './Header.styled';
-import LinkItem from './LinkItem.component';
+
+// components
 import SearchComponent from '../Search/Search.component';
 
 const links = [
@@ -24,25 +25,26 @@ const links = [
   }
 ];
 
+const activeStyles = {
+  color: 'rgba(210, 255, 82, 1)'
+};
+
 class HeaderComponent extends React.Component {
   constructor() {
     super();
     this.state = { current: '' };
   }
 
-  stateHandler = value => {
-    this.setState(() => { return { current: value }; });
-  };
-
   render() {
-    const renderedLinks = links.map((link, index) => (
-      <>
-        <LinkItem
-          link={link}
-          key={index.toString()}
-          styleHandler={this.stateHandler}
-        />
-      </>
+    const renderedLinks = links.map(({ link, text }) => (
+      <Header.NavLink
+        key={link}
+        exact
+        to={link}
+        activeStyle={activeStyles}
+      >
+        { text }
+      </Header.NavLink>
     ));
 
     return (

@@ -49,13 +49,15 @@ class QuantityHandlerComponent extends React.Component<Props> {
   };
 
   render() {
+    const { state } = this;
+
     return (
       <QuantityHandler.Wrapper>
         <QuantityHandler.DecreaseButton onClick={this.decreaseQuantity}>
           -
         </QuantityHandler.DecreaseButton>
         <QuantityHandler.QuantityView>
-          {this.state.quantity}
+          {state.quantity}
         </QuantityHandler.QuantityView>
         <QuantityHandler.IncreaseButton onClick={this.increaseQuantity}>
           +
