@@ -5,6 +5,7 @@ import PinnedBlock from './PinnedBlock.styled';
 
 // components
 import LoggedInComponent from '../LoggedIn/LoggedIn.component';
+import { LateRegistrationComponent } from '../RegistrationForm/LateRegistration';
 
 type Props = {
   count?: Number,
@@ -13,47 +14,7 @@ type Props = {
   surname?: String,
   email?: String,
   submitOrder?: Function,
-  setUserName?: Function,
-  setUserSurname?: Function,
-  setUserEmail?: Function,
-  onChangeName?: Function,
-  onChangeSurname?: Function,
-  onChangeEmail?: Function,
   isLoggedIn?: Boolean
-};
-
-const LateRegistrationComponent = (props: Props) => {
-  const {
-    name,
-    surname,
-    email,
-    onChangeName,
-    onChangeSurname,
-    onChangeEmail
-  } = props;
-
-  return (
-    <>
-      <PinnedBlock.NameInput
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={onChangeName}
-      />
-      <PinnedBlock.SurnameInput
-        type="text"
-        placeholder="Surname"
-        value={surname}
-        onChange={onChangeSurname}
-      />
-      <PinnedBlock.EmailInput
-        type="email"
-        placeholder="E-mail"
-        value={email}
-        onChange={onChangeEmail}
-      />
-    </>
-  );
 };
 
 class PinnedBlockComponent extends React.Component<Props> {
@@ -137,32 +98,10 @@ PinnedBlockComponent.defaultProps = {
   count: 0,
   totalPrice: 0,
   submitOrder: null,
-  setUserName: null,
-  setUserSurname: null,
-  setUserEmail: null,
   isLoggedIn: false,
   name: '',
   surname: '',
-  email: '',
-  onChangeName: () => {},
-  onChangeSurname: () => {},
-  onChangeEmail: () => {}
-};
-
-LateRegistrationComponent.defaultProps = {
-  count: 0,
-  totalPrice: 0,
-  submitOrder: null,
-  setUserName: null,
-  setUserSurname: null,
-  setUserEmail: null,
-  isLoggedIn: false,
-  name: '',
-  surname: '',
-  email: '',
-  onChangeName: () => {},
-  onChangeSurname: () => {},
-  onChangeEmail: () => {}
+  email: ''
 };
 
 export default PinnedBlockComponent;
