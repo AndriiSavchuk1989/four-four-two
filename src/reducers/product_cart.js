@@ -7,80 +7,81 @@ import {
 } from '../actions/actions_types';
 
 const initialState = {
-  basket: [],
+  data: [],
   count: 0,
   totalPrice: 0
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, { type, payload }) => {
   let tempBasket = [];
 
-  switch (action.type) {
+  switch (type) {
     case ADD_PRODUCT_TO_BASKET_SUCCESS:
-      if (state.basket.length) {
-        tempBasket = [...state.basket];
-        const index = tempBasket.findIndex(item => item.id === action.payload.id);
+      if (state.data.length) {
+        tempBasket = [...state.data];
+        const index = tempBasket.findIndex(item =>
+          item.id === payload.id);
 
         if (index !== -1) {
           tempBasket[index].quantity += 1;
 
           return {
             ...state,
-            basket: [...tempBasket],
+            data: [...tempBasket],
             count: state.count + 1,
-            totalPrice: state.totalPrice + action.payload.price
+            totalPrice: state.totalPrice + payload.price
           };
         }
 
-        tempBasket.push(action.payload);
+        tempBasket.push(payload);
 
         return {
           ...state,
-          basket: [...tempBasket],
+          data: [...tempBasket],
           count: state.count + 1,
-          totalPrice: state.totalPrice + action.payload.price
+          totalPrice: state.totalPrice + payload.price
         };
       }
 
       return {
         ...state,
-        basket: [...state.basket, action.payload],
+        data: [...state.data, payload],
         count: state.count + 1,
-        totalPrice: state.totalPrice + action.payload.price
+        totalPrice: state.totalPrice + payload.price
       };
     case ADD_PRODUCT_TO_BASKET_ERROR:
       return state;
 
     case INCREASE_PRODUCT_QUANTITY:
-      tempBasket = [...state.basket];
+      tempBasket = [...state.data];
       // eslint-disable-next-line no-case-declarations
-      const idx = tempBasket.findIndex(product => product.id === action.payload);
+      const idx = tempBasket.findIndex(product => product.id === payload);
 
       tempBasket[idx].quantity += 1;
 
       return {
         ...state,
-        basket: [...tempBasket],
+        data: [...tempBasket],
         count: state.count + 1,
         totalPrice: state.totalPrice + tempBasket[idx].price
       };
     case DECREASE_PRODUCT_QUANTITY:
-      tempBasket = [...state.basket];
+      tempBasket = [...state.data];
       // eslint-disable-next-line no-case-declarations
-      const index = tempBasket.findIndex(product => product.id === action.payload);
+      const index = tempBasket.findIndex(product => product.id === payload);
 
       tempBasket[index].quantity -= 1;
 
       return {
         ...state,
-        basket: [...tempBasket],
+        data: [...tempBasket],
         count: state.count - 1,
         totalPrice: state.totalPrice - tempBasket[index].price
       };
     case RESET_STATE:
       return {
         ...state,
-        basket: [],
+        data: [],
         count: 0,
         totalPrice: 0
       };

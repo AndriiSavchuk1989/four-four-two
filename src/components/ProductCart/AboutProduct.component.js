@@ -60,10 +60,10 @@ AboutProduct.defaultProps = {
   isLoading: false
 };
 
-const mapStateToProps = state => ({
-  product: state.product.product,
-  isLoading: state.product.isLoading,
-  basket: state.basket.basket
+const mapStateToProps = ({ product, basket }) => ({
+  product: product.data,
+  isLoading: product.isLoading,
+  basket: basket.data
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -49,9 +49,9 @@ ProductsListComponent.defaultProps = {
   isLoading: false
 };
 
-const mapStateToProps = state => ({
-  products: state.products.products,
-  isLoading: state.products.isLoading
+const mapStateToProps = ({ products }) => ({
+  products: products.data,
+  isLoading: products.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({

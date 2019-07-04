@@ -5,22 +5,25 @@ import {
 } from '../actions/actions_types';
 
 const initialState = {
-  product: {},
+  data: {},
   isLoading: false,
   error: null
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_PRODUCT_BY_ID_START: {
-      return { ...state, isLoading: true };
+      return {
+        ...state,
+        isLoading: true
+      };
     }
 
     case FETCH_PRODUCT_BY_ID_SUCCESS: {
       return {
         ...state,
         isLoading: false,
-        product: action.payload
+        data: payload
       };
     }
 
@@ -28,7 +31,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: action.payload
+        error: payload
       };
     }
 

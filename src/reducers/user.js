@@ -1,7 +1,7 @@
 import { SET_USER } from '../actions/actions_types';
 
 const initialState = {
-  user: {
+  data: {
     name: '',
     surname: '',
     email: ''
@@ -9,25 +9,21 @@ const initialState = {
   isLoggedIn: false
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case SET_USER:
-
-      return {
-        ...state,
-        user: {
-          name: action.payload.name,
-          surname: action.payload.surname,
-          email: action.payload.email
-        },
-        isLoggedIn: true
-      };
-
-
-    default:
-      return {
-        ...state,
-        isLoggedIn: state.isLoggedIn
-      };
+export default (state = initialState, { type, payload }) => {
+  if (type === SET_USER) {
+    return {
+      ...state,
+      data: {
+        name: payload.name,
+        surname: payload.surname,
+        email: payload.email
+      },
+      isLoggedIn: true
+    };
   }
+
+  return {
+    ...state,
+    isLoggedIn: state.isLoggedIn
+  };
 };
