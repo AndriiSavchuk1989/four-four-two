@@ -26,7 +26,8 @@ const links = [
 ];
 
 const activeStyles = {
-  color: 'rgba(210, 255, 82, 1)'
+  color: 'rgba(210, 255, 82, 1)',
+  backgroundColor: '#111'
 };
 
 class HeaderComponent extends React.Component {
