@@ -8,7 +8,8 @@ import RegistrationForm from './RegistrationForm.styled';
 import { setUser } from '../../actions/user';
 
 type Props = {
-  setUser?: Function
+  setUser?: Function,
+  isLoggedIn?: Boolean
 };
 
 class RegistrationFormComponent extends React.Component<Props> {
@@ -32,7 +33,12 @@ class RegistrationFormComponent extends React.Component<Props> {
   onSubmitHandler = () => {
     // eslint-disable-next-line no-console
     this.props.setUser({ ...this.state });
-    window.history.back();
+    this.pushRoute('/products');
+  };
+
+  pushRoute = pathName => {
+    // eslint-disable-next-line react/prop-types
+    this.props.history.push(pathName);
   };
 
   render() {
@@ -40,43 +46,57 @@ class RegistrationFormComponent extends React.Component<Props> {
 
     return (
       <RegistrationForm.Wrapper>
-        <RegistrationForm.RegistrationHeader>
-          Registration form
-        </RegistrationForm.RegistrationHeader>
-        <RegistrationForm.InputsGroup>
-          <RegistrationForm.Input
-            name="name"
-            value={state.name}
-            type="text"
-            placeholder="Name"
-            onChange={this.onNameChange}
-          />
-          <RegistrationForm.Input
-            name="surname"
-            value={state.surname}
-            type="text"
-            placeholder="Surname"
-            onChange={this.onSurnameChange}
-          />
-          <RegistrationForm.Input
-            name="email"
-            value={state.email}
-            type="text"
-            placeholder="Email"
-            onChange={this.onEmailChange}
-          />
-        </RegistrationForm.InputsGroup>
-        <RegistrationForm.SubmitButton onClick={this.onSubmitHandler}>
-          Submit
-        </RegistrationForm.SubmitButton>
+        {
+          !this.props.isLoggedIn ? (
+            <>
+              <RegistrationForm.RegistrationHeader>
+                Registration form
+              </RegistrationForm.RegistrationHeader>
+              <RegistrationForm.InputsGroup>
+                <RegistrationForm.Input
+                  name="name"
+                  value={state.name}
+                  type="text"
+                  placeholder="Name"
+                  onChange={this.onNameChange}
+                />
+                <RegistrationForm.Input
+                  name="surname"
+                  value={state.surname}
+                  type="text"
+                  placeholder="Surname"
+                  onChange={this.onSurnameChange}
+                />
+                <RegistrationForm.Input
+                  name="email"
+                  value={state.email}
+                  type="text"
+                  placeholder="Email"
+                  onChange={this.onEmailChange}
+                />
+              </RegistrationForm.InputsGroup>
+              <RegistrationForm.SubmitButton onClick={this.onSubmitHandler}>
+                Submit
+              </RegistrationForm.SubmitButton>
+            </>
+          ) :
+            (
+              <RegistrationForm.Registered>You already logged in</RegistrationForm.Registered>
+            )
+        }
       </RegistrationForm.Wrapper>
     );
   }
 }
 
 RegistrationFormComponent.defaultProps = {
-  setUser: () => {}
+  setUser: () => {},
+  isLoggedIn: false
 };
+
+const mapStateToProps = ({ user }) => ({
+  isLoggedIn: user.isLoggedIn
+});
 
 const mapDispatchToProps = dispatch => ({
   setUser: user => {
@@ -84,4 +104,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(RegistrationFormComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationFormComponent);
