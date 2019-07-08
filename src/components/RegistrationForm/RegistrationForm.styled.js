@@ -15,6 +15,10 @@ RegistrationForm.RegistrationHeader = styled.p`
   text-align: center;
 `;
 
+RegistrationForm.Registered = styled.p`
+  text-align: center;
+`;
+
 RegistrationForm.InputsGroup = styled.div`
   display: flex;
   flex-direction: column;

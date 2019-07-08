@@ -1,6 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 // components
@@ -14,13 +15,24 @@ import RegistrationFormComponent from '../components/RegistrationForm/Registrati
 
 const history = createBrowserHistory();
 
-const App = () => {
+type Props = {
+  isLoggedIn?: Boolean
+};
+
+const App = (props: Props) => {
   return (
     <BrowserRouter history={history}>
       <HeaderComponent />
       <Route component={LayoutComponent}>
         <Route exact path="/" component={HomeComponent} />
-        <Route exact path="/products" component={ProductsListComponent} />
+        <Route
+          exact
+          path="/products"
+          render={() => (
+            !props.isLoggedIn ? (<Redirect to="/registration" />) :
+              (<ProductsListComponent />)
+          )}
+        />
         <Route exact path="/registration" component={RegistrationFormComponent} />
       </Route>
       <Route exact path="/products/:id" component={AboutProduct} />
@@ -29,4 +41,12 @@ const App = () => {
   );
 };
 
-export default hot(module)(App);
+App.defaultProps = {
+  isLoggedIn: false
+};
+
+const mapStateToProps = ({ user }) => ({
+  isLoggedIn: user.isLoggedIn
+});
+
+export default connect(mapStateToProps)(hot(module)(App));
