@@ -10,7 +10,7 @@
 	"author": "andrii savchuk",
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.18.0",
+		"axios": "^0.21.1",
 		"babel-polyfill": "^6.26.0",
 		"connected-react-router": "^6.3.2",
 		"history": "^4.7.2",
